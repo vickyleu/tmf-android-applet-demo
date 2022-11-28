@@ -1,0 +1,17 @@
+*.iml
+*~
+.project
+.classpath
+.settings/
+bin/
+gen/
+build/
+/gradle
+/gradlew
+/gradlew.bat
+/local.properties
+/.gradle
+/.idea
+/build
+/.gitmodules
+build-app-output/
