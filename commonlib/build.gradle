@@ -1,0 +1,37 @@
+plugins {
+    id 'com.android.library'
+}
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 30
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 30
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    /////////////////////////////////////////////demo工程所需依赖
+    api "com.google.android.material:material:1.3.0-alpha03"
+    //组件化库
+    api "com.tencent.tmf.android:portal-annotations:3.0.0.0"
+    api "com.tencent.tmf.android:portal-core:3.0.0.0"
+
+    compileOnly "com.tencent.tmf.android:share:2.0.0.8-322-75d19ab9-SNAPSHOT"
+    compileOnly "com.tencent.tmf.android:WeChatSDK:6.8.0"
+    /////////////////////////////////////////////demo工程所需依赖
+}

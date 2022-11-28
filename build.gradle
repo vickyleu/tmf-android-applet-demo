@@ -1,0 +1,44 @@
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        maven { url "https://jitpack.io" }
+        maven {
+            url 'https://t.pinpad.qq.com/fHKFBbEjd/repository/maven-public/'
+            credentials {
+                username 'tmf_read'
+                password 'psnBSt@BVMva6#&^'
+            }
+            authentication {
+                basic(BasicAuthentication)
+            }
+        }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.1.3'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.32'
+        classpath "com.tencent.tmf.android:portal-gradle-plugin:3.0.0.0"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url "https://jitpack.io" }
+        maven {
+            url 'https://t.pinpad.qq.com/fHKFBbEjd/repository/maven-public/'
+            credentials {
+                username 'tmf_read'
+                password 'psnBSt@BVMva6#&^'
+            }
+            authentication {
+                basic(BasicAuthentication)
+            }
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

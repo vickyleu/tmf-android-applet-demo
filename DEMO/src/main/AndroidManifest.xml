@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.tencent.tmf.applet.demo1">
+
+    <application
+        android:name="com.tencent.tmf.applet.demo.DemoApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/applet_ic_launcher"
+        android:label="@string/applet_app_name"
+        android:roundIcon="@mipmap/applet_ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppletAppTheme"
+        tools:remove="android:requestLegacyExternalStorage"
+        tools:replace="android:icon, android:label,android:allowBackup">
+
+
+    </application>
+
+</manifest>

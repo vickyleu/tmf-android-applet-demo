@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="15dp"
+    android:paddingTop="20dp"
+    android:paddingRight="15dp"
+    android:paddingBottom="20dp">
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/config_server_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="配置服务器"
+            android:textColor="@color/applet_c_828282" />
+
+        <TextView
+            android:id="@+id/logo_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:gravity="center"
+            android:text="LOGO"
+            android:textSize="40sp" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <LinearLayout
+                android:id="@+id/operate_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!--          <EditText
+                              android:id="@+id/operate_user_name_edit"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:hint="请输入运营平台用户名"
+                              android:text="shanlianmeng" />-->
+
+                <AutoCompleteTextView
+                    android:id="@+id/operate_user_name_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:completionThreshold="1"
+                    android:dropDownHorizontalOffset="0dp"
+                    android:hint="请输入运营平台用户名"
+                    android:text="shanlianmeng" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <EditText
+                        android:id="@+id/operate_password_edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="请输入运营平台密码"
+                        android:inputType="textPassword"
+                        android:paddingRight="40dp"
+                        android:text="tmf123" />
+
+                    <ImageView
+                        android:id="@+id/operate_password_eye"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:background="@mipmap/applet_eye_invisible" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/open_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <AutoCompleteTextView
+                    android:id="@+id/open_user_name_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:completionThreshold="1"
+                    android:dropDownHorizontalOffset="0dp"
+                    android:hint="请输入开放平台用户名"
+                    android:text="mdev05301" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <EditText
+                        android:id="@+id/open_password_edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="请输入开放平台密码"
+                        android:inputType="textPassword"
+                        android:text="tmf123"
+                        android:paddingRight="40dp"/>
+
+                    <ImageView
+                        android:id="@+id/open_password_eye"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:background="@mipmap/applet_eye_invisible" />
+                </RelativeLayout>
+            </LinearLayout>
+        </FrameLayout>
+
+        <Button
+            android:id="@+id/login_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="登录" />
+
+        <TextView
+            android:id="@+id/other_login_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="right"
+            android:paddingRight="20dp"
+            android:text="APP账号登录"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/skip_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:gravity="right"
+        android:text="跳过登录"
+        android:textColor="@color/applet_c_828282" />
+
+    <TextView
+        android:id="@+id/account_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/change_account_text"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:paddingRight="20dp"
+        android:text="当前为运营账号"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/change_account_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:paddingRight="20dp"
+        android:text="切换为企业账号登录"
+        android:textColor="@color/applet_color_primary" />
+</RelativeLayout>

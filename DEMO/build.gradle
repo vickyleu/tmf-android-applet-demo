@@ -1,0 +1,92 @@
+import java.text.SimpleDateFormat
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'com.tencent.tmf.android.portal'
+
+android {
+    compileSdkVersion 30
+    defaultConfig {
+        applicationId "com.tencent.tmf.demo"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+//        ndk { abiFilters "armeabi" }
+
+        packagingOptions {
+            pickFirst 'lib/arm64-v8a/libc++_shared.so'
+            pickFirst 'lib/armeabi/libc++_shared.so'
+            pickFirst 'lib/armeabi-v7a/libc++_shared.so'
+            pickFirst 'lib/arm64-v8a/libmarsxlog.so'
+            pickFirst 'lib/armeabi/libmarsxlog.so'
+            pickFirst 'lib/armeabi-v7a/libmarsxlog.so'
+            pickFirst 'lib/arm64-v8a/libv8jni.so'
+        }
+    }
+
+    signingConfigs {
+        config {
+            keyAlias 'jason'
+            keyPassword '1234abcd'
+            storeFile file('tmf.jks')
+            storePassword '1234abcd'
+        }
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.config
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            signingConfig signingConfigs.config
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.assemble.doLast {
+            StringBuilder builder = new StringBuilder()
+            builder.append("${project.rootProject.projectDir}")
+                    .append(File.separator)
+                    .append("build-app-output")
+            variant.outputs.each { output ->
+                def outputFile = output.outputFile
+                println "outputFile=${outputFile.name}"
+                if (outputFile?.name?.endsWith('.apk')) {
+                    File file = new File(builder.toString())
+                    if (!file.exists()) {
+                        file.mkdirs()
+                    }
+                    copy {
+                        from outputFile
+                        into builder.toString()
+                        rename {
+                            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                            "tmf-applet-demo-${df.format(new Date())}.apk".toString()
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+}
+
+dependencies {
+    implementation project(':commonlib')
+    implementation project(':module-applet')
+}
