@@ -27,7 +27,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="添加服务器"
+                    android:text="@string/applet_add_server"
                     android:textColor="@android:color/white"
                     android:textSize="18sp" />
 
@@ -58,7 +58,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="24dp"
                 android:layout_marginBottom="10dp"
-                android:hint="服务器名称" />
+                android:hint="@string/applet_add_server" />
 
         <LinearLayout
                 android:layout_width="match_parent"
@@ -74,7 +74,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="start"
-                    android:hint="请输入服务器配置信息" />
+                    android:hint="@string/applet_server_config" />
 
             <Button
                     android:id="@+id/save_btn"
@@ -84,7 +84,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"
                     android:padding="10dp"
-                    android:text="保存配置" />
+                    android:text="@string/applet_server_save_config" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

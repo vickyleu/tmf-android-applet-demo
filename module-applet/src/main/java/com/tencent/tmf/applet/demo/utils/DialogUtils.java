@@ -10,7 +10,7 @@ public class DialogUtils {
         final AlertDialog alertDialog = new AlertDialog.Builder(context)
                 .setTitle(title)//标题
                 .setMessage(msg)//内容
-                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();

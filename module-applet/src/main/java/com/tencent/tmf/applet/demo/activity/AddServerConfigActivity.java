@@ -46,12 +46,12 @@ public class AddServerConfigActivity extends AppCompatActivity implements OnClic
                 String title = mTitleEdit.getText().toString();
                 String content = mContentEdit.getText().toString();
                 if (TextUtils.isEmpty(title) || TextUtils.isEmpty(content)) {
-                    Toast.makeText(AddServerConfigActivity.this, "内容不能为空", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddServerConfigActivity.this, R.string.applet_content_can_not_be_empty, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (title.length() < 2 || title.length() > 10) {
-                    Toast.makeText(AddServerConfigActivity.this, "服务器名称必须2~10个字符", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddServerConfigActivity.this, R.string.applet_server_name_must_be, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -59,7 +59,7 @@ public class AddServerConfigActivity extends AppCompatActivity implements OnClic
                 if (files != null) {
                     for (File f : files) {
                         if (f.getName().equalsIgnoreCase(title)) {
-                            Toast.makeText(AddServerConfigActivity.this, "配置文件名已存在: " + title, Toast.LENGTH_SHORT)
+                            Toast.makeText(AddServerConfigActivity.this, getString(R.string.applet_config_already_exists ,title), Toast.LENGTH_SHORT)
                                     .show();
                             return;
                         }
@@ -71,7 +71,7 @@ public class AddServerConfigActivity extends AppCompatActivity implements OnClic
                     jsonObject = new JSONObject(content);
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(AddServerConfigActivity.this, "配置文件内容必须是JSON格式", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddServerConfigActivity.this, R.string.applet_config_must_be_json, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -84,12 +84,12 @@ public class AddServerConfigActivity extends AppCompatActivity implements OnClic
 
                 jsonObject = jsonObject.optJSONObject("shark");
                 if (jsonObject == null) {
-                    Toast.makeText(AddServerConfigActivity.this, "未找到shark节点", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddServerConfigActivity.this, "not found shark ", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 String httpUrl = jsonObject.optString("httpUrl");
                 if (TextUtils.isEmpty(httpUrl)) {
-                    Toast.makeText(AddServerConfigActivity.this, "未找到httpUrl信息", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddServerConfigActivity.this, "not found httpUrl", Toast.LENGTH_SHORT).show();
                     return;
                 }
 

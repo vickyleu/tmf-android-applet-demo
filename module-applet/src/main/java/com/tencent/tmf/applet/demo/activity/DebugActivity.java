@@ -12,7 +12,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.tencent.qqmini.sdk.TmfMiniSDK;
+import com.tencent.tmf.mini.api.TmfMiniSDK;
 import com.tencent.tmf.applet.demo.ModuleApplet;
 import com.tencent.tmf.applet.demo.R;
 import com.tencent.tmf.applet.demo.sp.impl.CommonSp;
@@ -60,8 +60,6 @@ public class DebugActivity extends AppCompatActivity implements XGCOnRVItemClick
         serverConfigEntities.add(new DebugEntity("MODEL", Build.MODEL, DebugEntity.TYPE_1));
         serverConfigEntities.add(new DebugEntity("MANUFACTURER", Build.MANUFACTURER, DebugEntity.TYPE_1));
         serverConfigEntities.add(new DebugEntity("BOARD", Build.BOARD, DebugEntity.TYPE_1));
-
-
         serverConfigEntities
                 .add(new DebugEntity("TcpHost", debugInfo.optString("TcpHost"), DebugEntity.TYPE_1));
         serverConfigEntities
@@ -80,12 +78,13 @@ public class DebugActivity extends AppCompatActivity implements XGCOnRVItemClick
 
     @Override
     public void onRVItemClick(ViewGroup parent, View itemView, int position) {
-        if ("清除小程序基础库".equals(mAdapter.getItem(position).title)) {
+
+//        if ("清除小程序基础库".equals(mAdapter.getItem(position).title)) {
 //            TmfAppletService.clearBaseLib();
 //            mAdapter.getItem(1).content = TmfAppletService.getLocalBaseLibVersion();
 //            mAdapter.notifyItemChanged(1);
-        } else if ("小程序测试".equals(mAdapter.getItem(position).title)) {
-
-        }
+//        } else if ("小程序测试".equals(mAdapter.getItem(position).title)) {
+//
+//        }
     }
 }

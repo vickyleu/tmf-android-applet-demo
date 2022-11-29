@@ -9,10 +9,10 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.tencent.qqmini.sdk.TmfMiniSDK;
-import com.tencent.qqmini.sdk.tmf.bean.MiniApp;
-import com.tencent.qqmini.sdk.tmf.bean.MiniScene;
-import com.tencent.qqmini.sdk.tmf.bean.MiniStartOptions;
+import com.tencent.tmf.mini.api.TmfMiniSDK;
+import com.tencent.tmf.mini.api.bean.MiniApp;
+import com.tencent.tmf.mini.api.bean.MiniScene;
+import com.tencent.tmf.mini.api.bean.MiniStartOptions;
 import com.tencent.tmf.applet.demo.R;
 import com.tencent.tmf.applet.demo.utils.SoftKeyboardUtil;
 
@@ -63,7 +63,7 @@ public class AppidDialog extends BaseBottomDialog implements OnClickListener {
                 TmfMiniSDK.startMiniApp(activity, s, MiniScene.LAUNCH_SCENE_SEARCH, MiniApp.TYPE_ONLINE, miniStartOptions);
                 dismiss();
             } else {
-                Toast.makeText(getContext(), "APPID不能为空", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "APPID Can't be null", Toast.LENGTH_SHORT).show();
             }
         } else if (id == R.id.cencel_btn) {
             dismiss();

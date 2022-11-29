@@ -188,7 +188,7 @@ public class ShareProxyImpl implements ShareProxy {
                     activity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            MiniToast.makeText(activity, "模拟第三方实现", Toast.LENGTH_LONG).show();
+                            MiniToast.makeText(activity, "thrirdParty done", Toast.LENGTH_LONG).show();
                         }
                     });
                     shareToOtherItem1(activity, shareData);
@@ -196,7 +196,7 @@ public class ShareProxyImpl implements ShareProxy {
                 break;
             case OTHER_MORE_ITEM_2:
             default:
-                MiniToast.makeText(activity, "待第三方实现", Toast.LENGTH_LONG).show();
+                MiniToast.makeText(activity, "wait thirdparty do it", Toast.LENGTH_LONG).show();
                 break;
         }
     }

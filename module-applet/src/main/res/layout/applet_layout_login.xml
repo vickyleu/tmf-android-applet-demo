@@ -17,7 +17,7 @@
             android:id="@+id/config_server_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="配置服务器"
+            android:text="@string/applet_config_server"
             android:textColor="@color/applet_c_828282" />
 
         <TextView
@@ -53,7 +53,7 @@
                     android:layout_height="wrap_content"
                     android:completionThreshold="1"
                     android:dropDownHorizontalOffset="0dp"
-                    android:hint="请输入运营平台用户名"
+                    android:hint="@string/applet_input_username_yy"
                     android:text="shanlianmeng" />
 
                 <RelativeLayout
@@ -65,7 +65,7 @@
                         android:id="@+id/operate_password_edit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="请输入运营平台密码"
+                        android:hint="@string/applet_input_pwd_yy"
                         android:inputType="textPassword"
                         android:paddingRight="40dp"
                         android:text="tmf123" />
@@ -95,7 +95,7 @@
                     android:layout_height="wrap_content"
                     android:completionThreshold="1"
                     android:dropDownHorizontalOffset="0dp"
-                    android:hint="请输入开放平台用户名"
+                    android:hint="@string/applet_input_open_username"
                     android:text="mdev05301" />
 
                 <RelativeLayout
@@ -107,7 +107,7 @@
                         android:id="@+id/open_password_edit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="请输入开放平台密码"
+                        android:hint="@string/applet_input_open_pwd"
                         android:inputType="textPassword"
                         android:text="tmf123"
                         android:paddingRight="40dp"/>
@@ -129,7 +129,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="登录" />
+            android:text="@string/applet_login" />
 
         <TextView
             android:id="@+id/other_login_text"
@@ -138,7 +138,7 @@
             android:layout_marginTop="15dp"
             android:gravity="right"
             android:paddingRight="20dp"
-            android:text="APP账号登录"
+            android:text="@string/applet_login_app"
             android:visibility="gone" />
 
     </LinearLayout>
@@ -149,7 +149,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:gravity="right"
-        android:text="跳过登录"
+        android:text="@string/applet_skip_login"
         android:textColor="@color/applet_c_828282" />
 
     <TextView
@@ -160,7 +160,7 @@
         android:layout_marginBottom="10dp"
         android:gravity="center"
         android:paddingRight="20dp"
-        android:text="当前为运营账号"
+        android:text="@string/applet_current_yy"
         android:textSize="12sp" />
 
     <TextView
@@ -171,6 +171,6 @@
         android:layout_marginBottom="20dp"
         android:gravity="center"
         android:paddingRight="20dp"
-        android:text="切换为企业账号登录"
+        android:text="@string/applet_switch_company_account"
         android:textColor="@color/applet_color_primary" />
 </RelativeLayout>

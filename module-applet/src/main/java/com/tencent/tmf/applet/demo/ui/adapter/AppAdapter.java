@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.tencent.qqmini.sdk.tmf.bean.MiniApp;
+import com.tencent.tmf.mini.api.bean.MiniApp;
 import com.tencent.tmf.applet.demo.R;
 import com.tencent.tmf.applet.demo.ui.adapter.AppAdapter.AppHolder;
 import com.tencent.tmf.applet.demo.utils.GlideUtil;
@@ -76,11 +76,11 @@ public class AppAdapter extends XGCRecyclerViewAdapter<MiniApp, AppHolder> {
             switch (data.appVerType) {
                 case MiniApp.TYPE_DEVELOP:
                     mFlagText.setVisibility(View.VISIBLE);
-                    mFlagText.setText("开发版");
+                    mFlagText.setText("DEV");
                     break;
                 case MiniApp.TYPE_PREVIEW:
                     mFlagText.setVisibility(View.VISIBLE);
-                    mFlagText.setText("预览版");
+                    mFlagText.setText("PRE");
                     break;
                 case MiniApp.TYPE_ONLINE:
                     mFlagText.setVisibility(View.GONE);

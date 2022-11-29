@@ -158,7 +158,8 @@ public class ServerConfigListActivity extends AppCompatActivity implements XGCOn
             jsonObject = jsonObject.optJSONObject("shark");
             String tcpHost = jsonObject.optString("tcpHost");
             String httpUrl = jsonObject.optString("httpUrl");
-            serverConfigEntities.add(0, new ServerConfigEntity("APP内置配置", tcpHost, httpUrl, productId, null, !isFind));
+            String text = getString(R.string.applet_inner_app_config);
+            serverConfigEntities.add(0, new ServerConfigEntity(text, tcpHost, httpUrl, productId, null, !isFind));
             if (!isFind) {
                 mCurrentSelectConfigFile = null;
             }
@@ -215,8 +216,8 @@ public class ServerConfigListActivity extends AppCompatActivity implements XGCOn
 
             if (isChange) {
                 AlertDialog alertDialog = new AlertDialog.Builder(this)
-                        .setTitle("保存成功")//标题
-                        .setMessage("需要重启APP才能生效")//内容
+                        .setTitle(R.string.applet_save_success)//标题
+                        .setMessage(R.string.applet_restart_to_take_effective)//内容
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
@@ -239,9 +240,9 @@ public class ServerConfigListActivity extends AppCompatActivity implements XGCOn
         }
 
         final AlertDialog alertDialog = new AlertDialog.Builder(this)
-                .setTitle("删除")//标题
-                .setMessage("是否删除配置文件")//内容
-                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                .setTitle(R.string.applet_restart_to_take_effective_delete)//标题
+                .setMessage(R.string.applet_restart_to_take_effective_delete_config)//内容
+                .setPositiveButton(R.string.applet_tmf_confirm, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         FileUtil.deleteFileOrDir(mAdapter.getItem(position).file);
@@ -253,7 +254,7 @@ public class ServerConfigListActivity extends AppCompatActivity implements XGCOn
                         }
                     }
                 })
-                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.applet_cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();

@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="TMF小程序助手"
+                android:text="@string/applet_mini_app_helper"
                 android:textColor="@android:color/white"
                 android:textSize="18sp" />
 
@@ -71,7 +71,7 @@
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="常用小程序"
+                    android:text="@string/applet_common_use_app"
                     android:textSize="16sp" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -90,7 +90,7 @@
             android:layout_height="match_parent"
             android:textSize="18sp"
             android:gravity="center"
-            android:text="暂无可用小程序"
+            android:text="@string/applet_no_ava_mini_app"
             android:textColor="@color/c_7f646464"
             android:visibility="gone"/>
 </LinearLayout>

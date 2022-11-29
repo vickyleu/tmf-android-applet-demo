@@ -24,7 +24,7 @@
                 android:layout_toLeftOf="@+id/cancel_text"
                 android:background="@drawable/applet_edittext_border"
                 android:drawableLeft="@mipmap/applet_ic_search_grey"
-                android:hint="搜索"
+                android:hint="@string/applet_search"
                 android:imeOptions="actionSearch"
                 android:lines="1"
                 android:paddingLeft="10dp"
@@ -38,7 +38,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerInParent="true"
                     android:layout_marginRight="15dp"
-                    android:text="取消"
+                    android:text="@string/applet_cancel"
                     android:textColor="@android:color/white"
                     android:textSize="16sp" />
         </RelativeLayout>
@@ -64,7 +64,7 @@
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="搜索结果"
+                    android:text="@string/applet_search_result"
                     android:textSize="16sp" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -84,5 +84,5 @@
             android:textSize="18sp"
             android:gravity="center"
             android:textColor="@color/c_7f646464"
-            android:text="输入内容搜索小程序" />
+            android:text="@string/applet_input_to_search" />
 </LinearLayout>

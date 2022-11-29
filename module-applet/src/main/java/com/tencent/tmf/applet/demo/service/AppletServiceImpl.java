@@ -2,7 +2,7 @@ package com.tencent.tmf.applet.demo.service;
 
 import android.app.Activity;
 
-import com.tencent.qqmini.sdk.TmfMiniSDK;
+import com.tencent.tmf.mini.api.TmfMiniSDK;
 import com.tencent.tmf.applet.demo.sp.impl.CommonSp;
 import com.tencent.tmf.common.gen.ModuleAppletConst;
 import com.tencent.tmf.common.service.IAppletService;

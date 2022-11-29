@@ -27,7 +27,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="配置服务器"
+                    android:text="@string/applet_config_server"
                     android:textColor="@android:color/white"
                     android:textSize="18sp" />
 
@@ -56,7 +56,7 @@
     <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="请在下方列表选择或通过右上角新增"
+            android:text="@string/applet_choose_below_or_select_rightr"
             android:paddingTop="3dp"
             android:paddingBottom="3dp" />
 

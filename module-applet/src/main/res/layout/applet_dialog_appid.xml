@@ -20,7 +20,7 @@
                 android:id="@+id/appid_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="请输入APPID"
+                android:hint="@string/applet_input_appid"
             android:text=""/>
 
         <LinearLayout
@@ -35,14 +35,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.0"
-                android:text="确定" />
+                android:text="@string/applet_tmf_confirm" />
 
             <Button
                 android:id="@+id/cencel_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.0"
-                android:text="取消" />
+                android:text="@string/applet_tmf_cancel" />
         </LinearLayout>
     </LinearLayout>
 

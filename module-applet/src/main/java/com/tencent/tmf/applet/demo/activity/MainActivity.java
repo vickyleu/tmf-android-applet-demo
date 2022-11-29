@@ -1,6 +1,6 @@
 package com.tencent.tmf.applet.demo.activity;
 
-import android.Manifest;
+import android.Manifest.permission;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -27,6 +27,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,12 +35,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.qmuiteam.qmui.util.QMUIDisplayHelper;
 import com.qmuiteam.qmui.widget.popup.QMUIListPopup;
 import com.qmuiteam.qmui.widget.popup.QMUIPopup;
-import com.tencent.qqmini.sdk.TmfMiniSDK;
-import com.tencent.qqmini.sdk.tmf.bean.MiniApp;
-import com.tencent.qqmini.sdk.tmf.bean.MiniCode;
-import com.tencent.qqmini.sdk.tmf.bean.MiniScene;
-import com.tencent.qqmini.sdk.tmf.bean.MiniStartOptions;
-import com.tencent.qqmini.sdk.tmf.callback.IRecentMiniCallback;
+import com.tencent.tmf.mini.api.TmfMiniSDK;
+import com.tencent.tmf.mini.api.bean.MiniApp;
+import com.tencent.tmf.mini.api.bean.MiniCode;
+import com.tencent.tmf.mini.api.bean.MiniScene;
+import com.tencent.tmf.mini.api.bean.MiniStartOptions;
+import com.tencent.tmf.mini.api.callback.IRecentMiniCallback;
 import com.tencent.tmf.applet.demo.R;
 import com.tencent.tmf.applet.demo.dialog.AppidDialog;
 import com.tencent.tmf.applet.demo.sp.impl.CommonSp;
@@ -65,13 +66,29 @@ import xiao.framework.adapter.XGCOnRVItemLongClickListener;
 )
 public class MainActivity extends AppCompatActivity implements OnClickListener, XGCOnRVItemClickListener,
         XGCOnRVItemLongClickListener {
+
     //定位需要申请的权限
     String[] perms = {
-            Manifest.permission.ACCESS_FINE_LOCATION,
-            Manifest.permission.ACCESS_COARSE_LOCATION,
-            Manifest.permission.READ_PHONE_STATE,
-            Manifest.permission.VIBRATE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
+            android.Manifest.permission.ACCESS_FINE_LOCATION,
+            permission.ACCESS_COARSE_LOCATION,
+            permission.READ_PHONE_STATE,
+            permission.VIBRATE,
+            permission.WRITE_EXTERNAL_STORAGE,
+            //蓝牙
+            permission.BLUETOOTH,
+            permission.BLUETOOTH_ADMIN,
+            permission.BLUETOOTH_PRIVILEGED,
+            //nfc
+            permission.NFC,
+            //日历
+            permission.READ_CALENDAR,
+            permission.WRITE_CONTACTS,
+            //联系人
+            permission.READ_CONTACTS,
+            permission.WRITE_CONTACTS,
+            //短信
+            permission.SEND_SMS,
+            permission.READ_SMS
     };
     private static final int ITEMS_PER_ROW = 4;
     private Activity mActivity;
@@ -108,6 +125,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         checkPermission();
     }
 
+
     private static final int REQUEST_PERMISSION = 404;
 
     private boolean checkPermission() {
@@ -121,7 +139,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
             if (noPermissionList.size() > 0) {
                 String[] p = new String[noPermissionList.size()];
                 noPermissionList.toArray(p);
-                requestPermissions(p, REQUEST_PERMISSION);
+                ActivityCompat.requestPermissions(this, p, REQUEST_PERMISSION);
+//                requestPermissions(p, REQUEST_PERMISSION);
                 return false;
             } else {
                 return true;
@@ -179,24 +198,24 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
     private void delete(final int pos) {
         final MiniApp item = mAppAdapter.getItem(pos);
         final AlertDialog alertDialog = new AlertDialog.Builder(this)
-                .setTitle("删除")//标题
-                .setMessage("是否删除小程序\n" + item.appId + "\n" + item.version)//内容
-                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        TmfMiniSDK.deleteMiniApp(item.appId, item.appVerType, item.version);
-                        mAppAdapter.removeItem(pos);
-                        updateUi();
-                    }
-                })
-                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                })
-                .setCancelable(false)
-                .create();
+                .setTitle(R.string.applet_main_act_delete)//标题
+                .setMessage(getString(R.string.applet_main_act_delete_msg, item.appId, item.version))//内容
+                        .setPositiveButton(R.string.applet_main_act_delete_msg_confirm, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                TmfMiniSDK.deleteMiniApp(item.appId, item.appVerType, item.version);
+                                mAppAdapter.removeItem(pos);
+                                updateUi();
+                            }
+                        })
+                        .setNegativeButton(R.string.applet_main_act_delete_msg_cancal, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                            }
+                        })
+                        .setCancelable(false)
+                        .create();
         alertDialog.show();
     }
 
@@ -210,17 +229,12 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
     }
 
     private void showMenu1() {
-        String[] listItems = new String[]{
-                "扫一扫",
-                "AppId搜索",
-                "设置",
-                "退出登录"
-        };
+        String[] listItems = getResources().getStringArray(R.array.applet_menu_item);
         ArrayList<MenuData> menuData = new ArrayList<>();
-        menuData.add(new MenuData("扫一扫", R.mipmap.applet_ic_scan));
-        menuData.add(new MenuData("AppId搜索", R.mipmap.applet_ic_search));
-        menuData.add(new MenuData("调试信息", R.mipmap.applet_ic_debug));
-        menuData.add(new MenuData("退出登录", R.mipmap.applet_ic_logout));
+        menuData.add(new MenuData(listItems[0], R.mipmap.applet_ic_scan));
+        menuData.add(new MenuData(listItems[1], R.mipmap.applet_ic_search));
+        menuData.add(new MenuData(listItems[2], R.mipmap.applet_ic_debug));
+        menuData.add(new MenuData(listItems[3], R.mipmap.applet_ic_logout));
         List<String> data = new ArrayList<>();
 
         Collections.addAll(data, listItems);
@@ -296,7 +310,12 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         return true;
     }
 
+    public void checkPermisison(View view) {
+        checkPermission();
+    }
+
     public class CustomAdapter extends BaseAdapter {
+
         private List<MenuData> data = new ArrayList<>();
 
         public void setData(List<MenuData> data) {
@@ -345,11 +364,13 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
     }
 
     public static class ViewHolder {
+
         public ImageView mAppIconImageView;
         public TextView mAppNameTextView;
     }
 
     private static class MenuData {
+
         public String title;
         public int iconResId;
 

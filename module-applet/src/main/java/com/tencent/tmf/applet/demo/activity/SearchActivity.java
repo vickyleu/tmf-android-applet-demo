@@ -18,13 +18,13 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.tencent.qqmini.sdk.TmfMiniSDK;
-import com.tencent.qqmini.sdk.tmf.bean.MiniApp;
-import com.tencent.qqmini.sdk.tmf.bean.MiniCode;
-import com.tencent.qqmini.sdk.tmf.bean.MiniScene;
-import com.tencent.qqmini.sdk.tmf.bean.MiniStartOptions;
-import com.tencent.qqmini.sdk.tmf.bean.SearchOptions;
-import com.tencent.qqmini.sdk.tmf.callback.MiniCallback;
+import com.tencent.tmf.mini.api.TmfMiniSDK;
+import com.tencent.tmf.mini.api.bean.MiniApp;
+import com.tencent.tmf.mini.api.bean.MiniCode;
+import com.tencent.tmf.mini.api.bean.MiniScene;
+import com.tencent.tmf.mini.api.bean.MiniStartOptions;
+import com.tencent.tmf.mini.api.bean.SearchOptions;
+import com.tencent.tmf.mini.api.callback.MiniCallback;
 import com.tencent.tmf.applet.demo.R;
 import com.tencent.tmf.applet.demo.ui.adapter.AppAdapter;
 import com.tencent.tmf.applet.demo.utils.SoftKeyboardUtil;
@@ -108,7 +108,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                     mAppAdapter.setDatas(data);
                 } else {
                     mHintText.setVisibility(View.VISIBLE);
-                    mHintText.setText("未搜索到可用小程序");
+                    mHintText.setText(R.string.applet_search_no_ava_mini);
                     mCardView.setVisibility(View.GONE);
                     mAppAdapter.clear();
                     Toast.makeText(SearchActivity.this, msg + code, Toast.LENGTH_SHORT).show();

@@ -11,7 +11,6 @@ import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -28,9 +27,9 @@ import androidx.core.content.ContextCompat;
 
 import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
 import com.qmuiteam.qmui.widget.dialog.QMUITipDialog.Builder;
-import com.tencent.qqmini.sdk.TmfMiniSDK;
-import com.tencent.qqmini.sdk.tmf.bean.MiniCode;
-import com.tencent.qqmini.sdk.tmf.callback.MiniCallback;
+import com.tencent.tmf.mini.api.TmfMiniSDK;
+import com.tencent.tmf.mini.api.bean.MiniCode;
+import com.tencent.tmf.mini.api.callback.MiniCallback;
 import com.tencent.tmf.applet.demo.R;
 import com.tencent.tmf.applet.demo.sp.impl.CommonSp;
 import com.tencent.tmf.applet.demo.utils.DialogUtils;
@@ -172,8 +171,12 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
         if (viewId == R.id.config_server_text) {
             startActivity(new Intent(LoginActivity.this, ServerConfigListActivity.class));
         } else if (viewId == R.id.skip_text) {
-            DialogUtils.showDialog(this, "跳过登录", "只能体验正式版(已上架)小程序\n开发和预览版小程序无法体验",
-                    "确定", new DialogInterface.OnClickListener() {
+            String title = getString(R.string.applet_login_act_skip_login);
+            String titleTips = getString(R.string.applet_login_act_skip_login_tips);
+            String psBtn = getString(R.string.applet_login_act_skip_login_confirm);
+            String negBtn = getString(R.string.applet_login_act_skip_login_cancel);
+            DialogUtils.showDialog(this, title, titleTips,
+                    psBtn, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             CommonSp.getInstance().putSkipLogin(true);
@@ -181,7 +184,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
                             LoginActivity.this.finish();
                             dialog.dismiss();
                         }
-                    }, "取消", new DialogInterface.OnClickListener() {
+                    }, negBtn, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
@@ -194,7 +197,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
                 userName = mOpenUserNameEdit.getText().toString();
                 password = mOpenPasswordEdit.getText().toString();
                 if (TextUtils.isEmpty(userName) || TextUtils.isEmpty(password)) {
-                    Toast.makeText(this, "请输入开放平台账号和密码", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.applet_login_act_toast_input_open, Toast.LENGTH_SHORT).show();
                     return;
                 }
             } else {
@@ -202,14 +205,14 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
                 password = mOperatePasswordEdit.getText().toString();
                 if (TextUtils.isEmpty(mOperateUserNameEdit.getText().toString()) ||
                         TextUtils.isEmpty(mOperatePasswordEdit.getText().toString())) {
-                    Toast.makeText(this, "请输入运营平台账号和密码", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.applet_login_act_skip_input_yy, Toast.LENGTH_SHORT).show();
                     return;
                 }
             }
 
             final QMUITipDialog dialog = new Builder(this)
                     .setIconType(Builder.ICON_TYPE_LOADING)
-                    .setTipWord("登录中")
+                    .setTipWord(getString(R.string.applet_login_act_logining))
                     .create();
             dialog.show();
 
@@ -220,10 +223,10 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
                 public void value(int code, String msg, Void data) {
                     dialog.dismiss();
                     if (code == MiniCode.CODE_OK) {
-                        DialogUtils.showDialog(LoginActivity.this, "提示", "" +
-                                        "账号说明(IDE二维码为开发版小程序)\n\n" +
-                                        "运营账号： 支持正式(已上架)、预览小程序\n\n" +
-                                        "开放平台账号： 支持正式(已上架)、预览、开发版小程序\n", "请悉知",
+                        String tips = getString(R.string.applet_login_act_tips);
+                        String tipsD = getString(R.string.applet_login_act_tips_detail);
+                        String remind = getString(R.string.applet_login_remind_known);
+                        DialogUtils.showDialog(LoginActivity.this, tips, tipsD, remind,
                                 new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
@@ -231,14 +234,14 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
                                         mOperateUserNameAdapter.add(finalName);
                                         CommonSp.getInstance().putUser(finalName, finalPwd);
 
-//                                                TmfAppletService.setUserId(finalName);
+                                        TmfMiniSDK.setUserId(finalName);
                                         CommonSp.getInstance().putUserName(finalName);
                                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                         LoginActivity.this.finish();
                                     }
                                 });
                     } else {
-                        Toast.makeText(LoginActivity.this, "登录失败: " + msg, Toast.LENGTH_LONG)
+                        Toast.makeText(LoginActivity.this, getString(R.string.applet_login_remind_login_failed, msg), Toast.LENGTH_LONG)
                                 .show();
                     }
                 }
@@ -246,26 +249,26 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
         } else if (viewId == R.id.other_login_text) {
             if (mOpenPasswordEdit.getVisibility() == View.VISIBLE) {
                 mOpenPasswordEdit.setVisibility(View.GONE);
-                mOtherLoginText.setText("平台账号登录");
-                mOpenUserNameEdit.setHint("请输入开发者/体验者 用户ID");
+                mOtherLoginText.setText(R.string.applet_login_platform);
+                mOpenUserNameEdit.setHint(R.string.applet_login_platform_id);
             } else {
                 mOpenPasswordEdit.setVisibility(View.VISIBLE);
-                mOtherLoginText.setText("APP账号登录");
-                mOpenUserNameEdit.setHint("请输入开放平台用户名");
+                mOtherLoginText.setText(R.string.applet_login_app_account);
+                mOpenUserNameEdit.setHint(R.string.applet_login_open_name_account);
             }
         } else if (viewId == R.id.change_account_text) {
             if (mOperateLayout.getVisibility() == View.VISIBLE) {
                 mOperateLayout.setVisibility(View.GONE);
                 mOpenLayout.setVisibility(View.VISIBLE);
 //                mOtherLoginText.setVisibility(View.VISIBLE);
-                mAccountInfo.setText("当前为企业账号");
-                mChangeAccountText.setText("切换为运营账号登录");
+                mAccountInfo.setText(R.string.applet_login_current_company);
+                mChangeAccountText.setText(R.string.applet_login_switch_yy);
             } else {
                 mOperateLayout.setVisibility(View.VISIBLE);
                 mOpenLayout.setVisibility(View.GONE);
 //                mOtherLoginText.setVisibility(View.GONE);
-                mAccountInfo.setText("当前为运营账号");
-                mChangeAccountText.setText("切换为企业账号登录");
+                mAccountInfo.setText(R.string.applet_login_current_yy);
+                mChangeAccountText.setText(R.string.applet_login_current_company);
             }
         } else if (viewId == R.id.operate_password_eye) {
             if (mOperatePasswordEdit.getInputType() == (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)) {

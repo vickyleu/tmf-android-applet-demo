@@ -26,7 +26,7 @@
             android:layout_gravity="end|bottom"
             android:background="@color/c_7f000000"
             android:padding="1dp"
-            android:text="开发版"
+            android:text="@string/applet_develop_version"
             android:textColor="@color/white"
             android:textSize="9sp" />
     </FrameLayout>
