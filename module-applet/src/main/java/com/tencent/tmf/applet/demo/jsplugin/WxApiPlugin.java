@@ -5,6 +5,7 @@ import com.tencent.qqmini.sdk.annotation.JsPlugin;
 import com.tencent.qqmini.sdk.launcher.core.model.RequestEvent;
 import com.tencent.qqmini.sdk.launcher.core.plugins.BaseJsPlugin;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 @JsPlugin(secondary = true)
@@ -20,7 +21,13 @@ public class WxApiPlugin extends BaseJsPlugin {
         //异步返回数据
         //req.fail();
         //req.ok();
-        req.ok(new JSONObject());
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("key", "test");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        req.ok(jsonObject);
     }
 
     /**
