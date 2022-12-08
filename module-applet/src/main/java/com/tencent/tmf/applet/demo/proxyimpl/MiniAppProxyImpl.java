@@ -13,30 +13,17 @@ import com.tencent.qqmini.sdk.launcher.core.proxy.MiniAppProxy;
 import com.tencent.qqmini.sdk.launcher.ui.MoreItem;
 import com.tencent.qqmini.sdk.launcher.ui.MoreItemList;
 import com.tencent.qqmini.sdk.launcher.ui.OnMoreItemSelectedListener;
+import com.tencent.tmf.applet.demo.R;
 import com.tencent.tmf.applet.demo.utils.UniversalDrawable;
+import com.tencent.tmf.base.api.TMFBase;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @ProxyService(proxy = MiniAppProxy.class)
 public class MiniAppProxyImpl extends BaseMiniAppProxyImpl {
+
     private static final String TAG = "MiniAppProxyImpl";
-
-    /**
-     * 用户账号，uin或者openid
-     */
-    @Override
-    public String getAccount() {
-        return "123456";
-    }
-
-    /**
-     * 用户昵称
-     */
-    @Override
-    public String getNickName() {
-        return "nickname";
-    }
 
     /**
      * 接入方APP的版本信息
@@ -51,7 +38,7 @@ public class MiniAppProxyImpl extends BaseMiniAppProxyImpl {
      */
     @Override
     public String getAppName() {
-        return "demo";
+        return "miniApp";
     }
 
     /**
@@ -87,7 +74,8 @@ public class MiniAppProxyImpl extends BaseMiniAppProxyImpl {
     }
 
     @Override
-    public Drawable getDrawable(Context context, String source, int width, int hight, Drawable defaultDrawable, boolean useApng) {
+    public Drawable getDrawable(Context context, String source, int width, int hight, Drawable defaultDrawable,
+                                boolean useApng) {
         return getDrawable(context, source, width, hight, defaultDrawable);
     }
 
@@ -149,44 +137,52 @@ public class MiniAppProxyImpl extends BaseMiniAppProxyImpl {
     public ArrayList<MoreItem> getMoreItems(MoreItemList.Builder builder) {
         MoreItem item1 = new MoreItem();
         item1.id = ShareProxyImpl.OTHER_MORE_ITEM_1;
-        item1.text = "其他1";
+//        item1.text = "其他1";
+        item1.text = getString(R.string.applet_mini_proxy_impl_other1);
         item1.shareInMiniProcess = true;
         item1.drawable = com.tencent.qqmini.sdk.R.drawable.mini_sdk_about;
 
         MoreItem item2 = new MoreItem();
         item2.id = ShareProxyImpl.OTHER_MORE_ITEM_2;
-        item2.text = "其他2";
+        item2.text = getString(R.string.applet_mini_proxy_impl_other2);
         item2.drawable = com.tencent.qqmini.sdk.R.drawable.mini_sdk_about;
 
         MoreItem item3 = new MoreItem();
         item3.id = DemoMoreItemSelectedListener.CLOSE_MINI_APP;
-        item3.text = "浮窗";
+        item3.text = getString(R.string.applet_mini_proxy_impl_float_app);
         item3.drawable = com.tencent.qqmini.sdk.R.drawable.mini_sdk_about;
 
         MoreItem item4 = new MoreItem();
         item4.id = ShareProxyImpl.OTHER_MORE_ITEM_INVALID;
-        item4.text = "无效，id不属于区间[100,200]，不会显示在面板上";
+        item4.text = getString(R.string.applet_mini_proxy_impl_out_of_effect);
         item4.drawable = com.tencent.qqmini.sdk.R.drawable.mini_sdk_about;
 
-        // 自行调整顺序。不支持删除关于，举报。
+        // 自行调整顺序。
         builder.addMoreItem(item1)
                 .addMoreItem(item2)
-                .addFavorite(builder.isMyFavorite() ? "取消置顶" : "置顶",
-                        com.tencent.qqmini.sdk.R.drawable.mini_sdk_favorite)
                 .addShareQQ("QQ", com.tencent.qqmini.sdk.R.drawable.mini_sdk_channel_qq)
                 .addMoreItem(item3)
-                .addShortcut("添加到桌面", com.tencent.qqmini.sdk.R.drawable.mini_sdk_shortcut)
-                .addShareQzone("QQ空间", com.tencent.qqmini.sdk.R.drawable.mini_sdk_channel_qzone)
-                .addShareWxFriends("微信好友", com.tencent.qqmini.sdk.R.drawable.mini_sdk_channel_wx_friend)
-                .addShareWxMoments("微信朋友圈", com.tencent.qqmini.sdk.R.drawable.mini_sdk_channel_wx_moment)
-                .addRestart("重启小程序", com.tencent.qqmini.sdk.R.drawable.mini_sdk_restart_miniapp)
-                .addAbout("关于", com.tencent.qqmini.sdk.R.drawable.mini_sdk_about)
-                .addComplaint("举报", com.tencent.qqmini.sdk.R.drawable.mini_sdk_browser_report)
-                .addDebug("调试", com.tencent.qqmini.sdk.R.drawable.mini_sdk_about)
-                .addExportLog("导出日志", com.tencent.qqmini.sdk.R.drawable.mini_sdk_about)
-                .addMonitor("性能", com.tencent.qqmini.sdk.R.drawable.mini_sdk_about);
+                .addShareQzone(getString(R.string.applet_mini_proxy_impl_Qzone),
+                        com.tencent.qqmini.sdk.R.drawable.mini_sdk_channel_qzone)
+                .addShareWxFriends(getString(R.string.applet_mini_proxy_impl_wechat_friend),
+                        com.tencent.qqmini.sdk.R.drawable.mini_sdk_channel_wx_friend)
+                .addShareWxMoments(getString(R.string.applet_mini_proxy_impl_wechat_group),
+                        com.tencent.qqmini.sdk.R.drawable.mini_sdk_channel_wx_moment)
+                .addRestart(getString(R.string.applet_mini_proxy_impl_restart),
+                        com.tencent.qqmini.sdk.R.drawable.mini_sdk_restart_miniapp)
+                .addAbout(getString(R.string.applet_mini_proxy_impl_about),
+                        com.tencent.qqmini.sdk.R.drawable.mini_sdk_about)
+                .addDebug(getString(R.string.applet_debug_info), com.tencent.qqmini.sdk.R.drawable.mini_sdk_about)
+                .addMonitor(getString(R.string.applet_mini_proxy_impl_performance),
+                        com.tencent.qqmini.sdk.R.drawable.mini_sdk_about)
+                .addComplaint(getString(R.string.applet_mini_proxy_impl_complain_and_report),
+                        com.tencent.qqmini.sdk.R.drawable.mini_sdk_browser_report);
 
         return builder.build();
+    }
+
+    private String getString(int id) {
+        return TMFBase.getContext().getString(id);
     }
 
     /**

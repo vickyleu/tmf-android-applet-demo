@@ -23,7 +23,7 @@ public class WxApiPlugin extends BaseJsPlugin {
         //req.ok();
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("key", "test");
+            jsonObject.put("key", "wx.login");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -41,7 +41,13 @@ public class WxApiPlugin extends BaseJsPlugin {
         //异步返回数据
         //req.fail();
         //req.ok();
-        req.ok(new JSONObject());
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("key", "wx.getUserInfo");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        req.ok(jsonObject);
     }
 
     /**
@@ -55,6 +61,12 @@ public class WxApiPlugin extends BaseJsPlugin {
         //异步返回数据
         //req.fail();
         //req.ok();
-        req.ok(new JSONObject());
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("key", "wx.getUserProfile");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        req.ok(jsonObject);
     }
 }

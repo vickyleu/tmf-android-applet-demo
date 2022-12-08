@@ -11,12 +11,14 @@ public class DemoMoreItemSelectedListener extends DefaultMoreItemSelectedListene
 
     @Override
     public void onMoreItemSelected(IMiniAppContext miniAppContext, int moreItemId) {
+        //处理开发者自定义点击事件(自定义分享事件除外)
         switch (moreItemId) {
             case CLOSE_MINI_APP:
                 close(miniAppContext);
                 return;
         }
 
+        //处理内置分享和开发者自定义分享，例如：微博、twitter等
         super.onMoreItemSelected(miniAppContext, moreItemId);
     }
 

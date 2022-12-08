@@ -1,5 +1,6 @@
 package com.tencent.tmf.applet.demo.activity;
 
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,6 +22,7 @@ import com.tencent.tmf.applet.demo.ui.SpaceItemDecoration;
 import com.tencent.tmf.applet.demo.ui.adapter.DebugAdapter;
 import com.tencent.tmf.applet.demo.ui.entity.DebugEntity;
 
+import java.util.List;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -64,7 +67,7 @@ public class DebugActivity extends AppCompatActivity implements XGCOnRVItemClick
                 .add(new DebugEntity("TcpHost", debugInfo.optString("TcpHost"), DebugEntity.TYPE_1));
         serverConfigEntities
                 .add(new DebugEntity("HttpUrl", debugInfo.optString("HttpUrl"), DebugEntity.TYPE_1));
-        serverConfigEntities.add(new DebugEntity("AreaInfo", ModuleApplet.COUNTRY + " " + ModuleApplet.PROVINCE + " " + ModuleApplet.CITY,
+        serverConfigEntities.add(new DebugEntity("AreaInfo", getString(R.string.applet_mini_data_country) + " " + getString(R.string.applet_mini_proxy_province) + " " + getString(R.string.applet_mini_proxy_city),
                 DebugEntity.TYPE_1));
         serverConfigEntities.add(new DebugEntity("SdkVersion", debugInfo.optString("SdkVersion"), DebugEntity.TYPE_1));
         serverConfigEntities.add(new DebugEntity("GUID", debugInfo.optString("GUID"), DebugEntity.TYPE_1));
@@ -73,12 +76,15 @@ public class DebugActivity extends AppCompatActivity implements XGCOnRVItemClick
                         DebugEntity.TYPE_1));
 //        serverConfigEntities.add(new DebugEntity("清除小程序基础库", "点击清除已下载的小程序基础库", DebugEntity.TYPE_2));
 //        serverConfigEntities.add(new DebugEntity("小程序测试", "点击进入小程序测试页面", DebugEntity.TYPE_2));
+        serverConfigEntities.add(new DebugEntity("CheckPermission", "CheckPermission", DebugEntity.TYPE_2));
         mAdapter.setDatas(serverConfigEntities);
     }
 
     @Override
     public void onRVItemClick(ViewGroup parent, View itemView, int position) {
-
+        if ("CheckPermission".equals(mAdapter.getItem(position).title)){
+            checkPermission();
+        }
 //        if ("清除小程序基础库".equals(mAdapter.getItem(position).title)) {
 //            TmfAppletService.clearBaseLib();
 //            mAdapter.getItem(1).content = TmfAppletService.getLocalBaseLibVersion();
@@ -86,5 +92,26 @@ public class DebugActivity extends AppCompatActivity implements XGCOnRVItemClick
 //        } else if ("小程序测试".equals(mAdapter.getItem(position).title)) {
 //
 //        }
+    }
+    private boolean checkPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            List<String> noPermissionList = new ArrayList<>();
+            for (String permission : MainActivity.perms) {
+                if (checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
+                    noPermissionList.add(permission);
+                }
+            }
+            if (noPermissionList.size() > 0) {
+                String[] p = new String[noPermissionList.size()];
+                p = noPermissionList.toArray(p);
+                requestPermissions(p, 9527);
+//                requestPermissions(p, REQUEST_PERMISSION);
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return true;
+        }
     }
 }

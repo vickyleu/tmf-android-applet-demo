@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.tencent.connect.share.QQShare;
@@ -11,11 +12,11 @@ import com.tencent.connect.share.QzoneShare;
 import com.tencent.qqmini.sdk.annotation.ProxyService;
 import com.tencent.qqmini.sdk.launcher.AppLoaderFactory;
 import com.tencent.qqmini.sdk.launcher.core.IMiniAppContext;
+import com.tencent.qqmini.sdk.launcher.core.proxy.BaseShareProxy;
 import com.tencent.qqmini.sdk.launcher.core.proxy.ShareProxy;
 import com.tencent.qqmini.sdk.launcher.model.ShareData;
 import com.tencent.qqmini.sdk.launcher.ui.MoreItem;
 import com.tencent.qqmini.sdk.ui.MorePanel;
-import com.tencent.qqmini.sdk.widget.MiniToast;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
@@ -23,11 +24,11 @@ import com.tencent.tauth.UiError;
 import java.util.ArrayList;
 
 @ProxyService(proxy = ShareProxy.class)
-public class ShareProxyImpl implements ShareProxy {
+public class ShareProxyImpl extends BaseShareProxy {
 
     private static final String TAG = "ShareProxyImpl";
 
-    private static final String OPEN_APP_ID = "101794394";
+    private static final String QQ_APP_ID = "1108836394";
 
     // this init is so slow...
     private static volatile Tencent tencent;
@@ -37,7 +38,7 @@ public class ShareProxyImpl implements ShareProxy {
             synchronized (ShareProxyImpl.class) {
                 if (tencent == null) {
                     tencent = Tencent
-                            .createInstance(OPEN_APP_ID, AppLoaderFactory.g().getContext());
+                            .createInstance(QQ_APP_ID, AppLoaderFactory.g().getContext());
                 }
             }
         }
@@ -52,26 +53,6 @@ public class ShareProxyImpl implements ShareProxy {
     private IUiListener mQQShareUiListener;
 
     /**
-     * 获取默认的分享目标，即默认的宿主分享渠道。
-     * 默认分享目标的ID需要设置为[100, 200]这个区间中的值，否则，添加无效。
-     */
-    @Override
-    public int getDefaultShareTarget() {
-        return OTHER_MORE_ITEM_1;
-    }
-
-    @Override
-    public boolean isShareTargetAvailable(Context context, int shareTarget) {
-        if (shareTarget == ShareData.ShareTarget.WECHAT_MOMENTS ||
-                shareTarget == ShareData.ShareTarget.WECHAT_FRIEND) {
-            // Demo没有集成微信分享
-            return false;
-        }
-
-        return true;
-    }
-
-    /**
      * 分享
      *
      * @param shareData 分享数据
@@ -80,28 +61,19 @@ public class ShareProxyImpl implements ShareProxy {
     public void share(Activity activity, ShareData shareData) {
         switch (shareData.shareTarget) {
             case ShareData.ShareTarget.QQ:
-            case ShareData.ShareTarget.SHARE_CHAT:
-            case ShareData.ShareTarget.QQ_DIRECTLY:
-            case ShareData.ShareTarget.FRIEND_LIST:
+                Toast.makeText(activity, "QQ", Toast.LENGTH_SHORT).show();
                 shareToQQ(activity, shareData);
-                break;
-
+                return;
             case ShareData.ShareTarget.QZONE:
+                Toast.makeText(activity, "QZONE", Toast.LENGTH_SHORT).show();
                 shareToQZone(activity, shareData);
-                break;
-
+                return;
             case ShareData.ShareTarget.WECHAT_FRIEND:
-                shareToWxSession(activity, shareData);
-                break;
-
+                Toast.makeText(activity, "WECHAT_FRIEND", Toast.LENGTH_SHORT).show();
+                return;
             case ShareData.ShareTarget.WECHAT_MOMENTS:
-                shareToWxTimeline(activity, shareData);
-                break;
-
-            case ShareData.ShareTarget.UPDATABLE_MSG:
-                shareUpdatableMsg(shareData);
-                break;
-
+                Toast.makeText(activity, "WECHAT_MOMENTS", Toast.LENGTH_SHORT).show();
+                return;
             default:
                 break;
         }
@@ -109,11 +81,6 @@ public class ShareProxyImpl implements ShareProxy {
         if (MoreItem.isValidExtendedItemId(shareData.shareTarget)) {
             shareToOther(activity, shareData);
         }
-    }
-
-    @Override
-    public void sharePic(Activity activity, ShareData shareData) {
-
     }
 
     /**
@@ -132,12 +99,12 @@ public class ShareProxyImpl implements ShareProxy {
         params.putInt(QQShare.SHARE_TO_QQ_KEY_TYPE, QQShare.SHARE_TO_QQ_TYPE_DEFAULT);
         params.putString(QQShare.SHARE_TO_QQ_TITLE, shareData.title);
         params.putString(QQShare.SHARE_TO_QQ_SUMMARY, shareData.summary);
-        params.putString(QQShare.SHARE_TO_QQ_TARGET_URL, shareData.targetUrl);
+        params.putString(QQShare.SHARE_TO_QQ_TARGET_URL, TextUtils.isEmpty(shareData.targetUrl) ? "https://www.qq.com" : shareData.targetUrl);
         params.putString(QQShare.SHARE_TO_QQ_IMAGE_URL, shareData.sharePicPath);
         params.putString(QQShare.SHARE_TO_QQ_APP_NAME, "MiniSDKDemo");
 
         mQQShareUiListener = new QQShareListener(activity, shareData);
-        getTencent().shareToQQ(activity, params, mQQShareUiListener);
+        getTencent().shareToQQ(activity, params, null);
     }
 
     /**
@@ -148,34 +115,13 @@ public class ShareProxyImpl implements ShareProxy {
         params.putInt(QzoneShare.SHARE_TO_QZONE_KEY_TYPE, QzoneShare.SHARE_TO_QZONE_TYPE_IMAGE_TEXT);
         params.putString(QzoneShare.SHARE_TO_QQ_TITLE, shareData.title);//必填
         params.putString(QzoneShare.SHARE_TO_QQ_SUMMARY, shareData.summary);//选填
-        params.putString(QzoneShare.SHARE_TO_QQ_TARGET_URL, shareData.targetUrl);//必填
+        params.putString(QzoneShare.SHARE_TO_QQ_TARGET_URL, TextUtils.isEmpty(shareData.targetUrl) ? "https://www.qq.com" : shareData.targetUrl);//必填
         ArrayList imageUrlList = new ArrayList();
         imageUrlList.add(shareData.sharePicPath);
         params.putStringArrayList(QzoneShare.SHARE_TO_QQ_IMAGE_URL, imageUrlList);
 
         mQQShareUiListener = new QQShareListener(activity, shareData);
         getTencent().shareToQzone(activity, params, mQQShareUiListener);
-    }
-
-    /**
-     * 调用微信SDK，分享到微信好友
-     */
-    public void shareToWxSession(Activity activity, ShareData shareData) {
-
-    }
-
-    /**
-     * 调用微信SDK，分享到微信朋友圈
-     */
-    public void shareToWxTimeline(Activity activity, ShareData shareData) {
-
-    }
-
-    /**
-     * 发送ark动态消息
-     */
-    private void shareUpdatableMsg(ShareData shareData) {
-
     }
 
     /**
@@ -188,31 +134,16 @@ public class ShareProxyImpl implements ShareProxy {
                     activity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            MiniToast.makeText(activity, "thrirdParty done", Toast.LENGTH_LONG).show();
+                            Toast.makeText(activity, "thrirdParty done", Toast.LENGTH_SHORT).show();
                         }
                     });
-                    shareToOtherItem1(activity, shareData);
                 }
                 break;
             case OTHER_MORE_ITEM_2:
             default:
-                MiniToast.makeText(activity, "wait thirdparty do it", Toast.LENGTH_LONG).show();
+                Toast.makeText(activity, "wait thirdparty do it", Toast.LENGTH_SHORT).show();
                 break;
         }
-    }
-
-    private void shareToOtherItem1(Activity activity, ShareData shareData) {
-        Bundle params = new Bundle();
-        params.putInt(QzoneShare.SHARE_TO_QZONE_KEY_TYPE, QzoneShare.SHARE_TO_QZONE_TYPE_IMAGE_TEXT);
-        params.putString(QzoneShare.SHARE_TO_QQ_TITLE, shareData.title);//必填
-        params.putString(QzoneShare.SHARE_TO_QQ_SUMMARY, shareData.summary);//选填
-        params.putString(QzoneShare.SHARE_TO_QQ_TARGET_URL, shareData.targetUrl);//必填
-        ArrayList imageUrlList = new ArrayList();
-        imageUrlList.add(shareData.sharePicPath);
-        params.putStringArrayList(QzoneShare.SHARE_TO_QQ_IMAGE_URL, imageUrlList);
-
-        mQQShareUiListener = new QQShareListener(activity, shareData);
-        getTencent().shareToQzone(activity, params, mQQShareUiListener);
     }
 
     private class QQShareListener implements IUiListener {
@@ -227,32 +158,26 @@ public class ShareProxyImpl implements ShareProxy {
 
         @Override
         public void onComplete(Object o) {
+//            Toast.makeText(mContext, "share Complete", Toast.LENGTH_SHORT).show();
             mShareData.notifyShareResult(mContext, ShareData.ShareResult.SUCCESS);
         }
 
         @Override
         public void onError(UiError uiError) {
+            Toast.makeText(mContext, "share Error: " + uiError.errorCode + uiError.errorMessage, Toast.LENGTH_SHORT).show();
             mShareData.notifyShareResult(mContext, ShareData.ShareResult.FAIL);
         }
 
         @Override
         public void onCancel() {
+//            Toast.makeText(mContext, "share Cancel", Toast.LENGTH_SHORT).show();
             mShareData.notifyShareResult(mContext, ShareData.ShareResult.CANCEL);
         }
     }
 
     @Override
-    public void onJsShareAppMessage(Object shareData) {
-
-    }
-
-    @Override
-    public void onJsShareAppPictureMessage(Object shareData) {
-
-    }
-
-    @Override
     public void showSharePanel(IMiniAppContext miniAppContext) {
+        //固定写如下代码即可
         MorePanel.show(miniAppContext);
     }
 }

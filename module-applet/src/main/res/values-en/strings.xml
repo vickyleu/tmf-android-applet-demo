@@ -1,12 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
 <resources>
     <string name="applet_app_name">TmfAppletDemo</string>
-    <string name="applet_add_server">add server</string>
-    <string name="applet_server_name">server name</string>
-    <string name="applet_server_config">input server config</string>
-    <string name="applet_server_save_config">save config</string>
+    <string name="applet_add_server">Add server</string>
+    <string name="applet_server_name">Server name</string>
+    <string name="applet_server_config">Input server config</string>
+    <string name="applet_server_save_config">Save config</string>
 
-    <string name="applet_mini_app_helper">mini program helper</string>
-    <string name="applet_common_use_app">common app</string>
+    <string name="applet_mini_app_helper">Mini program helper</string>
+    <string name="applet_common_use_app">Common app</string>
     <string name="applet_no_ava_mini_app">No applets available</string>
 
     <string name="applet_mini_app_list">applet list</string>
@@ -86,15 +88,36 @@
     <string name="applet_restart_to_take_effective_delete_config">Whether to delete the configuration file</string>
     <!--mainActivity-->
     <string name="applet_main_act_delete">delete</string>
-    <string name="applet_main_act_delete_msg">Whether to delete the applet %s \n %s</string>
+    <string name="applet_main_act_delete_msg">Whether to delete the applet %1$s \n %2$s</string>
     <string name="applet_main_act_delete_msg_confirm">confirm</string>
     <string name="applet_main_act_delete_msg_cancal">cancel</string>
+
     <string-array name="applet_menu_item">
-        <item> scan it</item>
-        <item> search AppId</item>
-        <item> setting</item>
-        <item> logout</item>
+        <item>Scan it</item>
+        <item>Search AppId</item>
+        <item>Setting</item>
+        <item>Logout</item>
     </string-array>
 
 
+    <string name="applet_mini_proxy_impl_other1">Other1</string>
+    <string name="applet_mini_proxy_impl_other2">Other2</string>
+    <string name="applet_mini_proxy_impl_float_app">Float</string>
+    <string name="applet_mini_proxy_impl_out_of_effect">Id out of [100,200]</string>
+    <string name="applet_mini_proxy_impl_cancel_top">Cancel top</string>
+    <string name="applet_mini_proxy_impl_add_to_desktop">Add to desktop</string>
+    <string name="applet_mini_proxy_impl_Qzone">Qzone</string>
+    <string name="applet_mini_proxy_impl_wechat_friend">Friend</string>
+    <string name="applet_mini_proxy_impl_wechat_group">Group</string>
+    <string name="applet_mini_proxy_impl_restart">Restart</string>
+    <string name="applet_mini_proxy_impl_about">About</string>
+    <string name="applet_mini_proxy_impl_complain_and_report">Report</string>
+    <string name="applet_mini_proxy_impl_deung">Denug</string>
+    <string name="applet_mini_proxy_impl_export_log">Log</string>
+    <string name="applet_mini_proxy_impl_performance">Performance</string>
+    <string name="applet_mini_proxy_impl_move_top">Top</string>
+
+    <string name="applet_mini_data_country">China</string>
+    <string name="applet_mini_proxy_province">Beijing</string>
+    <string name="applet_mini_proxy_city">Beijing</string>
 </resources>

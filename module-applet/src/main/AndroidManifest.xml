@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.tencent.tmf.applet.demo">
-    <uses-permission
-            android:name="android.permission.BLUETOOTH"
-            android:maxSdkVersion="30" />
-    <uses-permission
-            android:name="android.permission.BLUETOOTH_ADMIN"
-            android:maxSdkVersion="30" />
-    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
-    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <!--NFC-->
     <uses-permission android:name="android.permission.NFC" />
     <uses-permission android:name="android.permission.NFC_TRANSACTION_EVENT" />
@@ -29,8 +19,25 @@
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
     <uses-permission android:name="android.permission.READ_SMS"/>
     <uses-permission android:name="android.permission.SEND_SMS"/>
-
-    <application>
+    <!--蓝牙-->
+    <!--https://developer.android.com/guide/topics/connectivity/bluetooth/permissions-->
+    <uses-feature android:name="android.hardware.bluetooth"/>
+    <uses-feature
+            android:name="android.hardware.bluetooth_le"
+            android:required="true" />
+    <uses-permission
+            android:name="android.permission.BLUETOOTH"
+            android:maxSdkVersion="30" />
+    <uses-permission
+            android:name="android.permission.BLUETOOTH_ADMIN"
+            android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <application
+        android:supportsRtl="true">
 
         <activity
             android:name=".activity.LoginActivity"
@@ -61,6 +68,37 @@
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateVisible" />
+        <provider
+                android:name="androidx.core.content.FileProvider"
+                android:authorities="${applicationId}.fileprovider"
+                android:exported="false"
+                android:grantUriPermissions="true">
+            <meta-data
+                    android:name="android.support.FILE_PROVIDER_PATHS"
+                    android:resource="@xml/forward_paths" />
+        </provider>
+
+
+        <!--qq分享sdk-->
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="tencent101794394" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="behind"
+
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
     </application>
 

@@ -36,9 +36,9 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:src="@mipmap/applet_ic_add"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="10dp"
                     android:visibility="gone"/>
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
@@ -54,9 +54,9 @@
                 style="@style/applet_edittext_border"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginRight="24dp"
+                android:layout_marginEnd="24dp"
                 android:layout_marginBottom="10dp"
                 android:hint="@string/applet_add_server" />
 

@@ -1,5 +1,6 @@
 package com.tencent.tmf.applet.demo.activity;
 
+import android.Manifest;
 import android.Manifest.permission;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -68,16 +69,19 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         XGCOnRVItemLongClickListener {
 
     //定位需要申请的权限
-    String[] perms = {
-            android.Manifest.permission.ACCESS_FINE_LOCATION,
-            permission.ACCESS_COARSE_LOCATION,
-            permission.READ_PHONE_STATE,
-            permission.VIBRATE,
-            permission.WRITE_EXTERNAL_STORAGE,
+  public static   String[] perms = {
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.READ_PHONE_STATE,
+            Manifest.permission.VIBRATE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
             //蓝牙
             permission.BLUETOOTH,
             permission.BLUETOOTH_ADMIN,
             permission.BLUETOOTH_PRIVILEGED,
+            permission.ACCESS_COARSE_LOCATION,
+            "android.permission.BLUETOOTH_SCAN",
+            "android.permission.BLUETOOTH_CONNECT",
             //nfc
             permission.NFC,
             //日历
@@ -122,24 +126,23 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         initView();
         initRecyclerView();
 
-        checkPermission();
     }
 
 
-    private static final int REQUEST_PERMISSION = 404;
+    private static final int REQUEST_PERMISSION = 4040;
 
     private boolean checkPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             List<String> noPermissionList = new ArrayList<>();
             for (String permission : perms) {
-                if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+                if (checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
                     noPermissionList.add(permission);
                 }
             }
             if (noPermissionList.size() > 0) {
                 String[] p = new String[noPermissionList.size()];
-                noPermissionList.toArray(p);
-                ActivityCompat.requestPermissions(this, p, REQUEST_PERMISSION);
+                p = noPermissionList.toArray(p);
+                requestPermissions(p, REQUEST_PERMISSION);
 //                requestPermissions(p, REQUEST_PERMISSION);
                 return false;
             } else {
@@ -200,22 +203,22 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         final AlertDialog alertDialog = new AlertDialog.Builder(this)
                 .setTitle(R.string.applet_main_act_delete)//标题
                 .setMessage(getString(R.string.applet_main_act_delete_msg, item.appId, item.version))//内容
-                        .setPositiveButton(R.string.applet_main_act_delete_msg_confirm, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                TmfMiniSDK.deleteMiniApp(item.appId, item.appVerType, item.version);
-                                mAppAdapter.removeItem(pos);
-                                updateUi();
-                            }
-                        })
-                        .setNegativeButton(R.string.applet_main_act_delete_msg_cancal, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                dialogInterface.dismiss();
-                            }
-                        })
-                        .setCancelable(false)
-                        .create();
+                .setPositiveButton(R.string.applet_main_act_delete_msg_confirm, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        TmfMiniSDK.deleteMiniApp(item.appId, item.appVerType, item.version);
+                        mAppAdapter.removeItem(pos);
+                        updateUi();
+                    }
+                })
+                .setNegativeButton(R.string.applet_main_act_delete_msg_cancal, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                })
+                .setCancelable(false)
+                .create();
         alertDialog.show();
     }
 
@@ -294,6 +297,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
 
         MiniStartOptions miniStartOptions = new MiniStartOptions();
         miniStartOptions.resultReceiver = mResultReceiver;
+        //"entryPagePath": "page/API/index",
+        miniStartOptions.entryPath = "page/API/index";
         TmfMiniSDK.startMiniApp(this, item.appId, MiniScene.LAUNCH_SCENE_MAIN_ENTRY, item.appVerType, miniStartOptions);
     }
 

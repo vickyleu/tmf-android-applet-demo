@@ -15,7 +15,7 @@
 
         <TextView
             android:id="@+id/config_server_text"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/applet_config_server"
             android:textColor="@color/applet_c_828282" />
@@ -67,16 +67,16 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/applet_input_pwd_yy"
                         android:inputType="textPassword"
-                        android:paddingRight="40dp"
+                        android:paddingEnd="40dp"
                         android:text="tmf123" />
 
                     <ImageView
                         android:id="@+id/operate_password_eye"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginEnd="10dp"
                         android:background="@mipmap/applet_eye_invisible" />
                 </RelativeLayout>
 
@@ -110,15 +110,15 @@
                         android:hint="@string/applet_input_open_pwd"
                         android:inputType="textPassword"
                         android:text="tmf123"
-                        android:paddingRight="40dp"/>
+                        android:paddingEnd="40dp"/>
 
                     <ImageView
                         android:id="@+id/open_password_eye"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginEnd="10dp"
                         android:background="@mipmap/applet_eye_invisible" />
                 </RelativeLayout>
             </LinearLayout>
@@ -136,8 +136,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:gravity="right"
-            android:paddingRight="20dp"
+            android:gravity="end"
+            android:paddingEnd="20dp"
             android:text="@string/applet_login_app"
             android:visibility="gone" />
 
@@ -147,8 +147,8 @@
         android:id="@+id/skip_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:gravity="right"
+        android:layout_alignParentEnd="true"
+        android:gravity="end"
         android:text="@string/applet_skip_login"
         android:textColor="@color/applet_c_828282" />
 
@@ -159,7 +159,7 @@
         android:layout_above="@+id/change_account_text"
         android:layout_marginBottom="10dp"
         android:gravity="center"
-        android:paddingRight="20dp"
+        android:paddingEnd="20dp"
         android:text="@string/applet_current_yy"
         android:textSize="12sp" />
 
@@ -170,7 +170,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="20dp"
         android:gravity="center"
-        android:paddingRight="20dp"
+        android:paddingEnd="20dp"
         android:text="@string/applet_switch_company_account"
         android:textColor="@color/applet_color_primary" />
 </RelativeLayout>

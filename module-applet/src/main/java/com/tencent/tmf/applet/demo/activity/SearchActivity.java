@@ -98,7 +98,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void search() {
-        SearchOptions searchOptions = new SearchOptions("");
+        SearchOptions searchOptions = new SearchOptions(mSearchEdit.getText().toString());
         TmfMiniSDK.searchMiniApp(searchOptions, new MiniCallback<List<MiniApp>>() {
             @Override
             public void value(int code, String msg, List<MiniApp> data) {

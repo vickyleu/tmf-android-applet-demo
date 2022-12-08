@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="applet_app_name">TmfAppletDemo</string>
     <string name="applet_add_server">添加服务器</string>
@@ -86,7 +87,7 @@
     <string name="applet_restart_to_take_effective_delete_config">是否删除配置文件</string>
     <!--mainActivity-->
     <string name="applet_main_act_delete">删除</string>
-    <string name="applet_main_act_delete_msg">是否删除小程序 %s \n %s</string>
+    <string name="applet_main_act_delete_msg">是否删除小程序 %1$s \n %2$s</string>
     <string name="applet_main_act_delete_msg_confirm">确定</string>
     <string name="applet_main_act_delete_msg_cancal">取消</string>
     <string-array name="applet_menu_item">
@@ -95,6 +96,26 @@
         <item> 设置</item>
         <item> 退出登录</item>
     </string-array>
+    <string name="applet_mini_proxy_impl_other1">其他1</string>
+    <string name="applet_mini_proxy_impl_other2">其他2</string>
+    <string name="applet_mini_proxy_impl_float_app">浮窗</string>
+    <string name="applet_mini_proxy_impl_out_of_effect">无效，id不属于区间[100,200]，不会显示在面板上</string>
+    <string name="applet_mini_proxy_impl_cancel_top">取消置顶</string>
+    <string name="applet_mini_proxy_impl_add_to_desktop">添加到桌面</string>
+    <string name="applet_mini_proxy_impl_Qzone">QQ空间</string>
+    <string name="applet_mini_proxy_impl_wechat_friend">微信好友</string>
+    <string name="applet_mini_proxy_impl_wechat_group">微信朋友圈</string>
+    <string name="applet_mini_proxy_impl_restart">重启小程序</string>
+    <string name="applet_mini_proxy_impl_about">关于</string>
+    <string name="applet_mini_proxy_impl_complain_and_report">举报</string>
+    <string name="applet_mini_proxy_impl_deung">调试</string>
+    <string name="applet_mini_proxy_impl_export_log">导出日志</string>
+    <string name="applet_mini_proxy_impl_performance">性能</string>
+    <string name="applet_mini_proxy_impl_move_top">置顶</string>
+
+    <string name="applet_mini_data_country">中国</string>
+    <string name="applet_mini_proxy_province">北京</string>
+    <string name="applet_mini_proxy_city">北京</string>
 
 
 </resources>

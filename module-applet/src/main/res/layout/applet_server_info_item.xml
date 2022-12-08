@@ -45,6 +45,6 @@
             android:src="@mipmap/applet_ic_done"
             android:layout_weight="0"
             android:layout_alignParentEnd="true"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:visibility="gone"/>
 </LinearLayout>

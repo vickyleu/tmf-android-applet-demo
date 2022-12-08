@@ -28,10 +28,12 @@ public class ModuleApplet implements Module {
 
     public static final String TAG = "TMF_APPLET_DEMO";
     public static final String IMEI = "test002";
-    public static final String COUNTRY = "中国";
-    public static final String PROVINCE = "北京市";
-    public static final String CITY = "北京市";
+    public static  String COUNTRY = "中国";
+    public static  String PROVINCE = "北京市";
+    public static  String CITY = "北京市";
     public static final String TMF_CONFIGURATIONS = "server/tmf-android-configurations-xiao.json";
+    //feedback 测试
+//    public static final String TMF_CONFIGURATIONS = "server/tmf-android-configurations-feedback.json";
     public static Application sApp;
     private IAppletService appletService;
 
@@ -98,6 +100,9 @@ public class ModuleApplet implements Module {
                 .debug(true)
                 .build();
         TmfMiniSDK.init(application, config);
+        COUNTRY = sApp.getResources().getString(R.string.applet_mini_data_country);
+        CITY = sApp.getResources().getString(R.string.applet_mini_proxy_city);
+        PROVINCE = sApp.getResources().getString(R.string.applet_mini_proxy_province);
         TmfMiniSDK.setLocation(COUNTRY, PROVINCE, CITY);
 
 //        TmfMiniSDK.preloadMiniApp(application, null);
