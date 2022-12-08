@@ -104,7 +104,7 @@ public class ShareProxyImpl extends BaseShareProxy {
         params.putString(QQShare.SHARE_TO_QQ_APP_NAME, "MiniSDKDemo");
 
         mQQShareUiListener = new QQShareListener(activity, shareData);
-        getTencent().shareToQQ(activity, params, null);
+        getTencent().shareToQzone(activity, params, mQQShareUiListener);
     }
 
     /**
@@ -121,7 +121,9 @@ public class ShareProxyImpl extends BaseShareProxy {
         params.putStringArrayList(QzoneShare.SHARE_TO_QQ_IMAGE_URL, imageUrlList);
 
         mQQShareUiListener = new QQShareListener(activity, shareData);
+
         getTencent().shareToQzone(activity, params, mQQShareUiListener);
+
     }
 
     /**
