@@ -298,7 +298,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         MiniStartOptions miniStartOptions = new MiniStartOptions();
         miniStartOptions.resultReceiver = mResultReceiver;
         //"entryPagePath": "page/API/index",
-        miniStartOptions.entryPath = "page/API/index";
+        //pages/cart/index.html
+        //"packageAPI/pages/api/login/login.html"
+//        miniStartOptions.entryPath = "pages/cart/index";
         TmfMiniSDK.startMiniApp(this, item.appId, MiniScene.LAUNCH_SCENE_MAIN_ENTRY, item.appVerType, miniStartOptions);
     }
 

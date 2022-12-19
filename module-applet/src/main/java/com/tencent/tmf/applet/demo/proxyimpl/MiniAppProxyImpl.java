@@ -4,10 +4,13 @@ package com.tencent.tmf.applet.demo.proxyimpl;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.text.TextUtils;
 
+import android.util.Log;
 import com.tencent.qqmini.sdk.annotation.ProxyService;
 import com.tencent.qqmini.sdk.launcher.core.IMiniAppContext;
+import com.tencent.qqmini.sdk.launcher.core.proxy.AsyncResult;
 import com.tencent.qqmini.sdk.launcher.core.proxy.BaseMiniAppProxyImpl;
 import com.tencent.qqmini.sdk.launcher.core.proxy.MiniAppProxy;
 import com.tencent.qqmini.sdk.launcher.ui.MoreItem;
@@ -17,6 +20,10 @@ import com.tencent.tmf.applet.demo.R;
 import com.tencent.tmf.applet.demo.utils.UniversalDrawable;
 import com.tencent.tmf.base.api.TMFBase;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +31,25 @@ import java.util.List;
 public class MiniAppProxyImpl extends BaseMiniAppProxyImpl {
 
     private static final String TAG = "MiniAppProxyImpl";
+
+    /**
+     * 获取scope.userInfo授权用户信息
+     * @param appId
+     * @param result
+     */
+    @Override
+    public void getUserInfo(String appId, AsyncResult result) {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            //返回昵称
+            jsonObject.put("nickName", "userInfo测试");
+            //返回头像url
+            jsonObject.put("avatarUrl", "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.daimg.com%2Fuploads%2Fallimg%2F210114%2F1-210114151951.jpg&refer=http%3A%2F%2Fimg.daimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1673852149&t=e2a830d9fabd7e0818059d92c3883017");
+            result.onReceiveResult(true, jsonObject);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * 接入方APP的版本信息
@@ -52,10 +78,10 @@ public class MiniAppProxyImpl extends BaseMiniAppProxyImpl {
     /**
      * 获取Drawable对象
      *
-     * @param context         上下文
-     * @param source          来源，可以是本地或者网络
-     * @param width           图片宽度
-     * @param hight           图片高度
+     * @param context 上下文
+     * @param source 来源，可以是本地或者网络
+     * @param width 图片宽度
+     * @param hight 图片高度
      * @param defaultDrawable 默认图片,用于加载中和加载失败
      */
     @Override
@@ -66,25 +92,22 @@ public class MiniAppProxyImpl extends BaseMiniAppProxyImpl {
         if (TextUtils.isEmpty(source)) {
             return drawable;
         }
-//        if (!PathUtil.isNetworkUrl(source)) {
-//            source = Uri.fromFile(new File(source)).toString();
-//        }
         drawable.loadImage(context, source);
         return drawable;
     }
 
     @Override
     public Drawable getDrawable(Context context, String source, int width, int hight, Drawable defaultDrawable,
-                                boolean useApng) {
+            boolean useApng) {
         return getDrawable(context, source, width, hight, defaultDrawable);
     }
 
     /**
      * 打开选图界面
      *
-     * @param context        当前Activity
+     * @param context 当前Activity
      * @param maxSelectedNum 允许选择的最大数量
-     * @param listner        回调接口
+     * @param listner 回调接口
      * @return 不支持该接口，请返回false
      */
     @Override
@@ -95,9 +118,9 @@ public class MiniAppProxyImpl extends BaseMiniAppProxyImpl {
     /**
      * 打开图片预览界面
      *
-     * @param context       当前Activity
+     * @param context 当前Activity
      * @param selectedIndex 当前选择的图片索引
-     * @param pathList      图片路径列表
+     * @param pathList 图片路径列表
      * @return 不支持该接口，请返回false
      */
     @Override
@@ -120,13 +143,13 @@ public class MiniAppProxyImpl extends BaseMiniAppProxyImpl {
     /**
      * 点击胶囊按钮的关闭选项
      *
-     * @param miniAppContext         小程序运行环境(小程序进程，非主进程)
+     * @param miniAppContext 小程序运行环境(小程序进程，非主进程)
      * @param onCloseClickedListener 点击小程序关闭时回调
      * @return 不支持该接口，请返回false
      */
     @Override
     public boolean onCapsuleButtonCloseClick(IMiniAppContext miniAppContext,
-                                             DialogInterface.OnClickListener onCloseClickedListener) {
+            DialogInterface.OnClickListener onCloseClickedListener) {
         return false;
     }
 
@@ -172,7 +195,8 @@ public class MiniAppProxyImpl extends BaseMiniAppProxyImpl {
                         com.tencent.qqmini.sdk.R.drawable.mini_sdk_restart_miniapp)
                 .addAbout(getString(R.string.applet_mini_proxy_impl_about),
                         com.tencent.qqmini.sdk.R.drawable.mini_sdk_about)
-                .addDebug(getString(R.string.applet_debug_info), com.tencent.qqmini.sdk.R.drawable.mini_sdk_about)
+                .addDebug(getString(R.string.mini_sdk_more_item_debug),
+                        com.tencent.qqmini.sdk.R.drawable.mini_sdk_about)
                 .addMonitor(getString(R.string.applet_mini_proxy_impl_performance),
                         com.tencent.qqmini.sdk.R.drawable.mini_sdk_about)
                 .addComplaint(getString(R.string.applet_mini_proxy_impl_complain_and_report),
@@ -193,6 +217,12 @@ public class MiniAppProxyImpl extends BaseMiniAppProxyImpl {
     @Override
     public OnMoreItemSelectedListener getMoreItemSelectedListener() {
         return new DemoMoreItemSelectedListener();
+    }
+
+    @Override
+    public boolean uploadUserLog(String appId, String logPath) {
+        Log.d("TMF_MINI", "uploadUserLog " + appId + " logPath " + logPath);
+        return false;
     }
 }
 

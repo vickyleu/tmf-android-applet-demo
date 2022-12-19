@@ -104,7 +104,7 @@ public class ShareProxyImpl extends BaseShareProxy {
         params.putString(QQShare.SHARE_TO_QQ_APP_NAME, "MiniSDKDemo");
 
         mQQShareUiListener = new QQShareListener(activity, shareData);
-        getTencent().shareToQzone(activity, params, mQQShareUiListener);
+        getTencent().shareToQQ(activity, params, null);
     }
 
     /**
@@ -121,9 +121,7 @@ public class ShareProxyImpl extends BaseShareProxy {
         params.putStringArrayList(QzoneShare.SHARE_TO_QQ_IMAGE_URL, imageUrlList);
 
         mQQShareUiListener = new QQShareListener(activity, shareData);
-
         getTencent().shareToQzone(activity, params, mQQShareUiListener);
-
     }
 
     /**
@@ -136,14 +134,14 @@ public class ShareProxyImpl extends BaseShareProxy {
                     activity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(activity, "thrirdParty done", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(activity, "custom menu click", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
                 break;
             case OTHER_MORE_ITEM_2:
             default:
-                Toast.makeText(activity, "wait thirdparty do it", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, "custom share", Toast.LENGTH_SHORT).show();
                 break;
         }
     }

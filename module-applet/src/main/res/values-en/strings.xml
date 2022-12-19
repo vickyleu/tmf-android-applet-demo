@@ -64,8 +64,8 @@
     <string name="applet_login_act_skip_input_yy">Please enter the operating platform account and password</string>
     <string name="applet_login_act_logining">logining</string>
     <string name="applet_login_act_tips">notice</string>
-    <string name="applet_login_act_tips_detail">"account description(The QR code is the development version of the applet in IDE)\n\n"
-                                        "Operating account： support（formal、preview)\n\n"
+    <string name="applet_login_act_tips_detail">"account description(The QR code is the development version of the applet in IDE)\n"
+                                        "Operating account： support（formal、preview)\n"
                                         "Open platform account： support（formal、preview、develop)\n"</string>
     <string name="applet_login_remind_known">Please kept informed</string>
     <string name="applet_login_remind_login_failed">login failed :%s</string>
@@ -101,7 +101,7 @@
 
 
     <string name="applet_mini_proxy_impl_other1">Other1</string>
-    <string name="applet_mini_proxy_impl_other2">Other2</string>
+    <string name="applet_mini_proxy_impl_other2">CustomShare</string>
     <string name="applet_mini_proxy_impl_float_app">Float</string>
     <string name="applet_mini_proxy_impl_out_of_effect">Id out of [100,200]</string>
     <string name="applet_mini_proxy_impl_cancel_top">Cancel top</string>
