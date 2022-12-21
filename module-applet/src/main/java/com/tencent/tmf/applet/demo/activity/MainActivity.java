@@ -28,25 +28,23 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.qmuiteam.qmui.util.QMUIDisplayHelper;
 import com.qmuiteam.qmui.widget.popup.QMUIListPopup;
 import com.qmuiteam.qmui.widget.popup.QMUIPopup;
+import com.tencent.tmf.applet.demo.R;
+import com.tencent.tmf.applet.demo.dialog.AppidDialog;
+import com.tencent.tmf.applet.demo.sp.impl.CommonSp;
+import com.tencent.tmf.applet.demo.ui.adapter.AppAdapter;
+import com.tencent.tmf.common.gen.ModuleAppletConst;
 import com.tencent.tmf.mini.api.TmfMiniSDK;
 import com.tencent.tmf.mini.api.bean.MiniApp;
 import com.tencent.tmf.mini.api.bean.MiniCode;
 import com.tencent.tmf.mini.api.bean.MiniScene;
 import com.tencent.tmf.mini.api.bean.MiniStartOptions;
 import com.tencent.tmf.mini.api.callback.IRecentMiniCallback;
-import com.tencent.tmf.applet.demo.R;
-import com.tencent.tmf.applet.demo.dialog.AppidDialog;
-import com.tencent.tmf.applet.demo.sp.impl.CommonSp;
-import com.tencent.tmf.applet.demo.ui.adapter.AppAdapter;
-import com.tencent.tmf.common.gen.ModuleAppletConst;
 import com.tencent.tmf.portal.Launcher;
 import com.tencent.tmf.portal.annotations.Destination;
 
@@ -69,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         XGCOnRVItemLongClickListener {
 
     //定位需要申请的权限
-  public static   String[] perms = {
+    public static String[] perms = {
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.READ_PHONE_STATE,
@@ -252,6 +250,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
                         switch (i) {
                             case 0:
                                 TmfMiniSDK.scan(MainActivity.this);
+//                                Log.d("xiao1", TmfMiniSDK.getAuthStateList("tmfgzswcderhdbst8l", MiniApp.TYPE_DEVELOP).toString());
+//                                TmfMiniSDK.setAuthState("tmfgzswcderhdbst8l", MiniApp.TYPE_DEVELOP, "scope.userInfo", false);
                                 break;
                             case 1:
                                 new AppidDialog(MainActivity.this).show();

@@ -4,10 +4,11 @@ package com.tencent.tmf.applet.demo.proxyimpl;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.text.TextUtils;
-
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+
 import com.tencent.qqmini.sdk.annotation.ProxyService;
 import com.tencent.qqmini.sdk.launcher.core.IMiniAppContext;
 import com.tencent.qqmini.sdk.launcher.core.proxy.AsyncResult;
@@ -19,11 +20,12 @@ import com.tencent.qqmini.sdk.launcher.ui.OnMoreItemSelectedListener;
 import com.tencent.tmf.applet.demo.R;
 import com.tencent.tmf.applet.demo.utils.UniversalDrawable;
 import com.tencent.tmf.base.api.TMFBase;
+import com.tencent.tmf.mini.api.bean.MiniAuthInfo;
+import com.tencent.tmf.mini.api.callback.IAuthView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +35,32 @@ public class MiniAppProxyImpl extends BaseMiniAppProxyImpl {
     private static final String TAG = "MiniAppProxyImpl";
 
     /**
+     * 自定义授权弹窗view
+     * @param context
+     * @param authInfo
+     * @param authView
+     * @return true:自定义授权view;false:使用内置
+     */
+    @Override
+    public boolean authView(Context context, MiniAuthInfo authInfo, IAuthView authView) {
+        boolean isCustom = false;
+        if(isCustom) {
+            View inflate = LayoutInflater.from(context).inflate(R.layout.mini_auth_view, null);
+            //必须设置
+            inflate.findViewById(R.id.mini_auth_btn_refuse).setOnClickListener(authInfo.refuseListener);
+            //必须设置
+            inflate.findViewById(R.id.mini_auth_btn_grant).setOnClickListener(authInfo.grantListener);
+
+            //返回自定义View
+            authView.getView(inflate);
+        }
+
+        return isCustom;
+    }
+
+    /**
      * 获取scope.userInfo授权用户信息
+     *
      * @param appId
      * @param result
      */
@@ -78,10 +105,10 @@ public class MiniAppProxyImpl extends BaseMiniAppProxyImpl {
     /**
      * 获取Drawable对象
      *
-     * @param context 上下文
-     * @param source 来源，可以是本地或者网络
-     * @param width 图片宽度
-     * @param hight 图片高度
+     * @param context         上下文
+     * @param source          来源，可以是本地或者网络
+     * @param width           图片宽度
+     * @param hight           图片高度
      * @param defaultDrawable 默认图片,用于加载中和加载失败
      */
     @Override
@@ -98,16 +125,16 @@ public class MiniAppProxyImpl extends BaseMiniAppProxyImpl {
 
     @Override
     public Drawable getDrawable(Context context, String source, int width, int hight, Drawable defaultDrawable,
-            boolean useApng) {
+                                boolean useApng) {
         return getDrawable(context, source, width, hight, defaultDrawable);
     }
 
     /**
      * 打开选图界面
      *
-     * @param context 当前Activity
+     * @param context        当前Activity
      * @param maxSelectedNum 允许选择的最大数量
-     * @param listner 回调接口
+     * @param listner        回调接口
      * @return 不支持该接口，请返回false
      */
     @Override
@@ -118,9 +145,9 @@ public class MiniAppProxyImpl extends BaseMiniAppProxyImpl {
     /**
      * 打开图片预览界面
      *
-     * @param context 当前Activity
+     * @param context       当前Activity
      * @param selectedIndex 当前选择的图片索引
-     * @param pathList 图片路径列表
+     * @param pathList      图片路径列表
      * @return 不支持该接口，请返回false
      */
     @Override
@@ -143,13 +170,13 @@ public class MiniAppProxyImpl extends BaseMiniAppProxyImpl {
     /**
      * 点击胶囊按钮的关闭选项
      *
-     * @param miniAppContext 小程序运行环境(小程序进程，非主进程)
+     * @param miniAppContext         小程序运行环境(小程序进程，非主进程)
      * @param onCloseClickedListener 点击小程序关闭时回调
      * @return 不支持该接口，请返回false
      */
     @Override
     public boolean onCapsuleButtonCloseClick(IMiniAppContext miniAppContext,
-            DialogInterface.OnClickListener onCloseClickedListener) {
+                                             DialogInterface.OnClickListener onCloseClickedListener) {
         return false;
     }
 
