@@ -7,14 +7,14 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.qmuiteam.qmui.arch.QMUISwipeBackActivityManager;
-import com.tencent.tmf.mini.api.TmfMiniSDK;
-import com.tencent.tmf.mini.api.bean.MiniInitConfig;
 import com.tencent.tmf.applet.demo.service.AppletServiceImpl;
 import com.tencent.tmf.applet.demo.sp.impl.CommonSp;
 import com.tencent.tmf.applet.demo.utils.AppUtil;
 import com.tencent.tmf.applet.demo.utils.GlideUtil;
 import com.tencent.tmf.common.CommonApp;
 import com.tencent.tmf.common.service.IAppletService;
+import com.tencent.tmf.mini.api.TmfMiniSDK;
+import com.tencent.tmf.mini.api.bean.MiniInitConfig;
 import com.tencent.tmf.portal.Module;
 import com.tencent.tmf.portal.ServiceFactory;
 import com.tencent.tmf.portal.annotations.SingleModule;
@@ -105,6 +105,6 @@ public class ModuleApplet implements Module {
         PROVINCE = sApp.getResources().getString(R.string.applet_mini_proxy_province);
         TmfMiniSDK.setLocation(COUNTRY, PROVINCE, CITY);
 
-//        TmfMiniSDK.preloadMiniApp(application, null);
+        TmfMiniSDK.preloadMiniApp(application, null);
     }
 }

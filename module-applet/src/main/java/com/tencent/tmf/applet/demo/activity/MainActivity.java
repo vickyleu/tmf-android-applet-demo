@@ -299,8 +299,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         miniStartOptions.resultReceiver = mResultReceiver;
         //"entryPagePath": "page/API/index",
         //pages/cart/index.html
-        //"packageAPI/pages/api/login/login.html"
+//        miniStartOptions.entryPath = "packageAPI/pages/api/login/login.html";
 //        miniStartOptions.entryPath = "pages/cart/index";
+//        miniStartOptions.entryPath = "/pages/webH5/index?url=https%3A%2F%2Fwx.vzan.com%2Flive%2Ftvchat-1765195222%3Fv%3D1671595835420";
         TmfMiniSDK.startMiniApp(this, item.appId, MiniScene.LAUNCH_SCENE_MAIN_ENTRY, item.appVerType, miniStartOptions);
     }
 

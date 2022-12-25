@@ -1,10 +1,9 @@
 package com.tencent.tmf.applet.demo.jsplugin;
 
-import com.tencent.qqmini.sdk.annotation.JsEvent;
-import com.tencent.qqmini.sdk.annotation.JsPlugin;
-import com.tencent.qqmini.sdk.launcher.core.model.RequestEvent;
-import com.tencent.qqmini.sdk.launcher.core.plugins.BaseJsPlugin;
-import com.tencent.qqmini.sdk.launcher.log.QMLog;
+import com.tencent.tmfmini.sdk.annotation.JsEvent;
+import com.tencent.tmfmini.sdk.annotation.JsPlugin;
+import com.tencent.tmfmini.sdk.launcher.core.model.RequestEvent;
+import com.tencent.tmfmini.sdk.launcher.core.plugins.BaseJsPlugin;
 
 import org.json.JSONObject;
 

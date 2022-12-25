@@ -2,9 +2,9 @@ package com.tencent.tmf.applet.demo.proxyimpl;
 
 import android.app.Activity;
 
-import com.tencent.qqmini.sdk.launcher.core.IMiniAppContext;
-import com.tencent.qqmini.sdk.launcher.log.QMLog;
-import com.tencent.qqmini.sdk.ui.DefaultMoreItemSelectedListener;
+import com.tencent.tmfmini.sdk.launcher.core.IMiniAppContext;
+import com.tencent.tmfmini.sdk.launcher.log.QMLog;
+import com.tencent.tmfmini.sdk.ui.DefaultMoreItemSelectedListener;
 
 public class DemoMoreItemSelectedListener extends DefaultMoreItemSelectedListener {
     public static final int CLOSE_MINI_APP = 150;

@@ -9,14 +9,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.tencent.qqmini.sdk.annotation.ProxyService;
-import com.tencent.qqmini.sdk.launcher.core.IMiniAppContext;
-import com.tencent.qqmini.sdk.launcher.core.proxy.AsyncResult;
-import com.tencent.qqmini.sdk.launcher.core.proxy.BaseMiniAppProxyImpl;
-import com.tencent.qqmini.sdk.launcher.core.proxy.MiniAppProxy;
-import com.tencent.qqmini.sdk.launcher.ui.MoreItem;
-import com.tencent.qqmini.sdk.launcher.ui.MoreItemList;
-import com.tencent.qqmini.sdk.launcher.ui.OnMoreItemSelectedListener;
+import com.tencent.tmfmini.sdk.annotation.ProxyService;
+import com.tencent.tmfmini.sdk.launcher.core.IMiniAppContext;
+import com.tencent.tmfmini.sdk.launcher.core.proxy.AsyncResult;
+import com.tencent.tmfmini.sdk.launcher.core.proxy.BaseMiniAppProxyImpl;
+import com.tencent.tmfmini.sdk.launcher.core.proxy.MiniAppProxy;
+import com.tencent.tmfmini.sdk.launcher.ui.MoreItem;
+import com.tencent.tmfmini.sdk.launcher.ui.MoreItemList;
+import com.tencent.tmfmini.sdk.launcher.ui.OnMoreItemSelectedListener;
 import com.tencent.tmf.applet.demo.R;
 import com.tencent.tmf.applet.demo.utils.UniversalDrawable;
 import com.tencent.tmf.base.api.TMFBase;
@@ -190,44 +190,44 @@ public class MiniAppProxyImpl extends BaseMiniAppProxyImpl {
 //        item1.text = "其他1";
         item1.text = getString(R.string.applet_mini_proxy_impl_other1);
         item1.shareInMiniProcess = true;
-        item1.drawable = com.tencent.qqmini.sdk.R.drawable.mini_sdk_about;
+        item1.drawable = R.mipmap.mini_demo_about;
 
         MoreItem item2 = new MoreItem();
         item2.id = ShareProxyImpl.OTHER_MORE_ITEM_2;
         item2.text = getString(R.string.applet_mini_proxy_impl_other2);
-        item2.drawable = com.tencent.qqmini.sdk.R.drawable.mini_sdk_about;
+        item2.drawable = R.mipmap.mini_demo_about;
 
         MoreItem item3 = new MoreItem();
         item3.id = DemoMoreItemSelectedListener.CLOSE_MINI_APP;
         item3.text = getString(R.string.applet_mini_proxy_impl_float_app);
-        item3.drawable = com.tencent.qqmini.sdk.R.drawable.mini_sdk_about;
+        item3.drawable = R.mipmap.mini_demo_about;
 
         MoreItem item4 = new MoreItem();
         item4.id = ShareProxyImpl.OTHER_MORE_ITEM_INVALID;
         item4.text = getString(R.string.applet_mini_proxy_impl_out_of_effect);
-        item4.drawable = com.tencent.qqmini.sdk.R.drawable.mini_sdk_about;
+        item4.drawable = R.mipmap.mini_demo_about;
 
         // 自行调整顺序。
         builder.addMoreItem(item1)
                 .addMoreItem(item2)
-                .addShareQQ("QQ", com.tencent.qqmini.sdk.R.drawable.mini_sdk_channel_qq)
+                .addShareQQ("QQ", R.mipmap.mini_demo_channel_qq)
                 .addMoreItem(item3)
                 .addShareQzone(getString(R.string.applet_mini_proxy_impl_Qzone),
-                        com.tencent.qqmini.sdk.R.drawable.mini_sdk_channel_qzone)
+                        R.mipmap.mini_demo_channel_qzone)
                 .addShareWxFriends(getString(R.string.applet_mini_proxy_impl_wechat_friend),
-                        com.tencent.qqmini.sdk.R.drawable.mini_sdk_channel_wx_friend)
+                        R.mipmap.mini_demo_channel_wx_friend)
                 .addShareWxMoments(getString(R.string.applet_mini_proxy_impl_wechat_group),
-                        com.tencent.qqmini.sdk.R.drawable.mini_sdk_channel_wx_moment)
+                        R.mipmap.mini_demo_channel_wx_moment)
                 .addRestart(getString(R.string.applet_mini_proxy_impl_restart),
-                        com.tencent.qqmini.sdk.R.drawable.mini_sdk_restart_miniapp)
+                        R.mipmap.mini_demo_restart_miniapp)
                 .addAbout(getString(R.string.applet_mini_proxy_impl_about),
-                        com.tencent.qqmini.sdk.R.drawable.mini_sdk_about)
+                        R.mipmap.mini_demo_about)
                 .addDebug(getString(R.string.mini_sdk_more_item_debug),
-                        com.tencent.qqmini.sdk.R.drawable.mini_sdk_about)
+                        R.mipmap.mini_demo_about)
                 .addMonitor(getString(R.string.applet_mini_proxy_impl_performance),
-                        com.tencent.qqmini.sdk.R.drawable.mini_sdk_about)
+                        R.mipmap.mini_demo_about)
                 .addComplaint(getString(R.string.applet_mini_proxy_impl_complain_and_report),
-                        com.tencent.qqmini.sdk.R.drawable.mini_sdk_browser_report);
+                        R.mipmap.mini_demo_browser_report);
 
         return builder.build();
     }

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.text.TextUtils;
 
-import com.tencent.qqmini.sdk.launcher.log.QMLog;
+import com.tencent.tmfmini.sdk.launcher.log.QMLog;
 
 import java.io.BufferedInputStream;
 import java.io.File;

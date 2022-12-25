@@ -51,11 +51,11 @@ dependencies {
     //x5内核
     implementation 'com.tencent.tbs.tbssdk:sdk:43903'
     // mini app start
-    kapt 'com.tencent.tmf.android:mini_annotation_processor:1.4.0-SNAPSHOT'
-    implementation 'com.tencent.tmf.android:mini_core:1.4.15-SNAPSHOT'
+    kapt 'com.tencent.tmf.android:mini_annotation_processor:1.4.1-SNAPSHOT'
+    implementation 'com.tencent.tmf.android:mini_core:1.4.16-SNAPSHOT'
     //扫码扩展组件
-    implementation 'com.tencent.tmf.android:mini_extra_qrcode:1.4.1-SNAPSHOT'
+    implementation 'com.tencent.tmf.android:mini_extra_qrcode:1.4.2-SNAPSHOT'
     //google定位地图扩展组件
-    implementation 'com.tencent.tmf.android:mini_extra_google_map:1.4.3-SNAPSHOT'
+    implementation 'com.tencent.tmf.android:mini_extra_google_map:1.4.4-SNAPSHOT'
     // mini app end
 }
