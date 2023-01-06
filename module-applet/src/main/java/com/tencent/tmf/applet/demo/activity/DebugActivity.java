@@ -27,6 +27,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import qiu.niorgai.StatusBarCompat;
 import xiao.framework.adapter.XGCOnRVItemClickListener;
 
 public class DebugActivity extends AppCompatActivity implements XGCOnRVItemClickListener {
@@ -40,6 +41,7 @@ public class DebugActivity extends AppCompatActivity implements XGCOnRVItemClick
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.applet_activity_debug);
+        StatusBarCompat.setStatusBarColor(this, getResources().getColor(R.color.applet_color_primary_dark));
         initView();
     }
 

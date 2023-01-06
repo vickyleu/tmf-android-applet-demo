@@ -1,15 +1,15 @@
 {
   "channel": "Android",
   "customId": "21b4bfc0-5967-11ec-907d-ff65a9732fae",
-  "material": "01JoPvMeiyI/qkyhmcM1ebWbx/s5IqS+vo+K/mTKooRSX5uBFJgMwu3IjSnUl8lvzFX4ft6ORgfP/la7BM+nHe7zeWZYgQKMSAVvCBqzIXH40Na4yPEyxbj6nOIEE1P2BLGo6OE4ufFB6wKqRf0/ctkYVW17q5ZhVzMLvtNZ5FsCc9BmEY/qI1s8pdMYB+TVr7UG7SEjui3E88NS6XxNpVb+twc8NFzaX/b4/m9z961gKg5A09JVmXjOCYy/pNU+gRq286q/Ci/e4CI+Qrva3cViFyooOFOfTZnEZa2+uX3tpsEMKiU2F0tkWIJrFm4vVCBwTOAyJrdCqlQGcODvNwF7ejXOLaN22shsuqV2XDo/6aVb3A/ezf076Tr7h7aDQMRrKxD+wpXqCXu9DzWTRdWrzvX6nVhvsRdRSm/2UeV5ByPM8zDuQScwgBPDJdJcYLzku8gWL0ysQ1RvDvMV6P8JhIyN/92enPOZQg/Kgqe3dAA3cViSzELUJxj/nrnyb5/ur83ZqOcxSvHNND3AQGx3y5IHxvb2opbvWrLdmdMDerbzqr8KL97gIj5Cu9rdxWDRSIsCSpeQTCq5at0OrPiF9J2wGTiMSb+H31Do/mDng0XqZBpBnf5cl+Psu2X+8x4FHUz2DecAxTU47PmeJhrRYKQxxanMW74FGtNphYrEjYiOCm8+Cwv7o/LBpgzsdJrKycqdaK4b0K5I401cTIkg==ce078b27f0babeb1",
-  "packageName": "com.tencent.tmf.demo1",
-  "productId": "2362",
+  "material": "01rz2iz2sYF9YgbMiCQhpijMohavTaYKM5auSTnUQGM5hy1Gsk57XExbQUki5eIpR46S/I2y86H7A4ycNZXkU601IgrlbCi963GtpcK1TH1P9dmj49wONt+Zf43vYHENNABhPfDWoxhtsKMnaxq5rYoSvP7jvdvHwymoY9FBIwU6BVVAFOf/0KgDjSmK2bH3pr08lboaMRNMKbyoKGRRgw68wrXCwl9h8rHPSDRBf5fQkjvKjth0IjMXEHAC6/5/TULIQxQxvF33QOumiVivsruOjPT9c90OOOCRStvuOQkB6IIw81m3h4x31H+6JNe6Md+IBH18DCKV4XewH4tBXnCVGLAyV6LOdcmiOEcvGtWAv6IQeUAwMBosi3rsTMAp9sM1CUTbEuu4ZrMqdQOSmfiwGyDYVz8XgAOynJ0uBzDbJI+YWUZkaazS8tWR9lH2lFPfFx1HM4n103RG9QxTVBzA+I3KSSnfKdlAqlisMZq5Te53iZvLIadDowJDs4VPg2GFsJCt+6KbWVkFTBKRHATMGU1PFXSCcJIokkUS+dtukSu1wUSKYF+8E6skcahWZQoVp6xGeeloBwg9Y5/V0MAosMrMrb/IbXeRv6g8FzUiwtCc/HkpDDAYg8g0WUPOki61y6DREamdHacY539B3JITu/hU6fBK22VES+pELBXJs8dPYnktlTt/xeYWdw4ghvVF5LXOJ4QRJTl2BmS0bBFAQe9Vjusgrr4CFf1XeuDAAiVOpErEFbahAJ8WDbVwZha4ec6ba896debefd",
+  "packageName": "com.tencent.tmf.demo",
+  "productId": "4516",
   "qapm": {
     "appKey": "None",
     "url": "http://xx.com"
   },
   "shark": {
-    "appKey": "app-ivedeij1ni",
+    "appKey": "app-deg0wqasns",
     "asymEnc": 1,
     "httpUrl": "http://58.87.98.187:30013",
     "symEnc": 2,

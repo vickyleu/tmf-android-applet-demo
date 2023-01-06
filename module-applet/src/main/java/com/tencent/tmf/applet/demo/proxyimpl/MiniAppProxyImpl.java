@@ -35,6 +35,14 @@ public class MiniAppProxyImpl extends BaseMiniAppProxyImpl {
     private static final String TAG = "MiniAppProxyImpl";
 
     /**
+     * 用户账号,必须唯一，设置后数据会按账号隔离存储,不建议使用用户敏感信息.(主进程环境执行)
+     */
+    @Override
+    public String getAccount() {
+        return "tmf_test";
+    }
+
+    /**
      * 自定义授权弹窗view
      * @param context
      * @param authInfo

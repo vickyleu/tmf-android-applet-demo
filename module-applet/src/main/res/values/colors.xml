@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="applet_color_primary">#4876FF</color>
-    <color name="applet_color_primary_dark">#4876FF</color>
+    <color name="applet_color_primary">#00A8E1</color>
+    <color name="applet_color_primary_dark">#00A8E1</color>
     <color name="applet_color_accent">#D81B60</color>
     <color name="c_7f000000">#7f000000</color>
     <color name="c_7f646464">#7f646464</color>
