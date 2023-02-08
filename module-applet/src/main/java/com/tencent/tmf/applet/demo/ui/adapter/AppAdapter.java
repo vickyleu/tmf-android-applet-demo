@@ -33,6 +33,20 @@ public class AppAdapter extends XGCRecyclerViewAdapter<MiniApp, AppHolder> {
         holder.setData(model);
     }
 
+    public void remove(String appId, int appVerType){
+        if(getDatas() != null) {
+            int i=0;
+            for (i=0; i<getDatas().size(); i++) {
+                MiniApp app = getDatas().get(i);
+                if(app.appId.equals(appId) && app.appVerType == appVerType) {
+                    break;
+                }
+            }
+
+            getDatas().remove(i);
+        }
+    }
+
     public static class AppHolder extends XGCRecyclerViewHolder<MiniApp, AppAdapter> {
 
         private ImageView mIconImg;

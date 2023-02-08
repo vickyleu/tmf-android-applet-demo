@@ -9,6 +9,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import com.tencent.tmf.applet.demo.ModuleApplet;
+import com.tencent.tmf.applet.demo.R;
+import com.tencent.tmf.applet.demo.sp.impl.CommonSp;
+import com.tencent.tmf.applet.demo.utils.UniversalDrawable;
+import com.tencent.tmf.mini.api.bean.MiniAuthInfo;
+import com.tencent.tmf.mini.api.callback.IAuthView;
 import com.tencent.tmfmini.sdk.annotation.ProxyService;
 import com.tencent.tmfmini.sdk.launcher.core.IMiniAppContext;
 import com.tencent.tmfmini.sdk.launcher.core.proxy.AsyncResult;
@@ -17,33 +23,52 @@ import com.tencent.tmfmini.sdk.launcher.core.proxy.MiniAppProxy;
 import com.tencent.tmfmini.sdk.launcher.ui.MoreItem;
 import com.tencent.tmfmini.sdk.launcher.ui.MoreItemList;
 import com.tencent.tmfmini.sdk.launcher.ui.OnMoreItemSelectedListener;
-import com.tencent.tmf.applet.demo.R;
-import com.tencent.tmf.applet.demo.utils.UniversalDrawable;
-import com.tencent.tmf.base.api.TMFBase;
-import com.tencent.tmf.mini.api.bean.MiniAuthInfo;
-import com.tencent.tmf.mini.api.callback.IAuthView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @ProxyService(proxy = MiniAppProxy.class)
 public class MiniAppProxyImpl extends BaseMiniAppProxyImpl {
 
     private static final String TAG = "MiniAppProxyImpl";
+    private static final String SHARE_TWITTER = "twitter";
 
     /**
-     * 用户账号,必须唯一，设置后数据会按账号隔离存储,不建议使用用户敏感信息.(主进程环境执行)
+     * 用户账号,可选配置，设置后数据会按账号隔离存储小程序数据
+     * 调用环境：主进程
      */
     @Override
     public String getAccount() {
-        return "tmf_test";
+        String userName = CommonSp.getInstance().getUserName(ModuleApplet.sApp);
+        return userName;
+    }
+
+    /**
+     * 返回账号登录Cookie信息;superCode(key不能修改)对应账号具备查看开发或预览版小程序的权限，才能扫码打开；否则，扫码失败
+     * 调用环境：主进程
+     * key:superCode不能修改
+     * value:开发者自己生成后设置
+     *
+     * @return
+     */
+    @Override
+    public Map<String, String> getCookie() {
+//        Map<String, String> objectObjectHashMap = new HashMap<>();
+//        objectObjectHashMap.put("superCode", "0ee465cc-dd4d-464e-b52e-64885472cbf9");
+//        return objectObjectHashMap;
+
+        return null;
     }
 
     /**
      * 自定义授权弹窗view
+     * 调用环境：子进程
+     *
      * @param context
      * @param authInfo
      * @param authView
@@ -52,7 +77,7 @@ public class MiniAppProxyImpl extends BaseMiniAppProxyImpl {
     @Override
     public boolean authView(Context context, MiniAuthInfo authInfo, IAuthView authView) {
         boolean isCustom = false;
-        if(isCustom) {
+        if (isCustom) {
             View inflate = LayoutInflater.from(context).inflate(R.layout.mini_auth_view, null);
             //必须设置
             inflate.findViewById(R.id.mini_auth_btn_refuse).setOnClickListener(authInfo.refuseListener);
@@ -68,6 +93,7 @@ public class MiniAppProxyImpl extends BaseMiniAppProxyImpl {
 
     /**
      * 获取scope.userInfo授权用户信息
+     * 调用环境：子进程
      *
      * @param appId
      * @param result
@@ -189,30 +215,50 @@ public class MiniAppProxyImpl extends BaseMiniAppProxyImpl {
     }
 
     /**
-     * 返回胶囊更多面板的按钮，扩展按钮的ID需要设置为[100, 200]这个区间中的值，否则，添加无效
+     * 返回自定义分享数据Map
+     * key:与getMoreItems方法中添加的MoreItem.id一致
+     * value:与getMoreItems方法中添加的MoreItem.shareKey一致
+     * 调用环境：子进程
+     *
+     * @return
      */
     @Override
-    public ArrayList<MoreItem> getMoreItems(MoreItemList.Builder builder) {
+    public Map<String, Integer> getCustomShare() {
+        Map<String, Integer> objects = new HashMap<>();
+        objects.put(SHARE_TWITTER, ShareProxyImpl.OTHER_MORE_ITEM_2);
+        return objects;
+    }
+
+
+    /**
+     * 返回胶囊更多面板的按钮，扩展按钮的ID需要设置为[100, 200]这个区间中的值，否则，添加无效
+     * 调用环境：子进程
+     *
+     * @param miniAppContext 小程序运行环境(小程序进程，非主进程)
+     * @param builder
+     * @return
+     */
+    @Override
+    public ArrayList<MoreItem> getMoreItems(IMiniAppContext miniAppContext, MoreItemList.Builder builder) {
         MoreItem item1 = new MoreItem();
         item1.id = ShareProxyImpl.OTHER_MORE_ITEM_1;
-//        item1.text = "其他1";
-        item1.text = getString(R.string.applet_mini_proxy_impl_other1);
-        item1.shareInMiniProcess = true;
+        item1.text = getString(miniAppContext, R.string.applet_mini_proxy_impl_other1);
         item1.drawable = R.mipmap.mini_demo_about;
 
         MoreItem item2 = new MoreItem();
         item2.id = ShareProxyImpl.OTHER_MORE_ITEM_2;
-        item2.text = getString(R.string.applet_mini_proxy_impl_other2);
+        item2.text = getString(miniAppContext, R.string.applet_mini_proxy_impl_other2);
+        item2.shareKey = SHARE_TWITTER;//自定义分享的key,必须设置且唯一，与小程序端调用控制设置时会使用到
         item2.drawable = R.mipmap.mini_demo_about;
 
         MoreItem item3 = new MoreItem();
         item3.id = DemoMoreItemSelectedListener.CLOSE_MINI_APP;
-        item3.text = getString(R.string.applet_mini_proxy_impl_float_app);
+        item3.text = getString(miniAppContext, R.string.applet_mini_proxy_impl_float_app);
         item3.drawable = R.mipmap.mini_demo_about;
 
         MoreItem item4 = new MoreItem();
         item4.id = ShareProxyImpl.OTHER_MORE_ITEM_INVALID;
-        item4.text = getString(R.string.applet_mini_proxy_impl_out_of_effect);
+        item4.text = getString(miniAppContext, R.string.applet_mini_proxy_impl_out_of_effect);
         item4.drawable = R.mipmap.mini_demo_about;
 
         // 自行调整顺序。
@@ -220,28 +266,28 @@ public class MiniAppProxyImpl extends BaseMiniAppProxyImpl {
                 .addMoreItem(item2)
                 .addShareQQ("QQ", R.mipmap.mini_demo_channel_qq)
                 .addMoreItem(item3)
-                .addShareQzone(getString(R.string.applet_mini_proxy_impl_Qzone),
+                .addShareQzone(getString(miniAppContext, R.string.applet_mini_proxy_impl_Qzone),
                         R.mipmap.mini_demo_channel_qzone)
-                .addShareWxFriends(getString(R.string.applet_mini_proxy_impl_wechat_friend),
+                .addShareWxFriends(getString(miniAppContext, R.string.applet_mini_proxy_impl_wechat_friend),
                         R.mipmap.mini_demo_channel_wx_friend)
-                .addShareWxMoments(getString(R.string.applet_mini_proxy_impl_wechat_group),
+                .addShareWxMoments(getString(miniAppContext, R.string.applet_mini_proxy_impl_wechat_group),
                         R.mipmap.mini_demo_channel_wx_moment)
-                .addRestart(getString(R.string.applet_mini_proxy_impl_restart),
+                .addRestart(getString(miniAppContext, R.string.applet_mini_proxy_impl_restart),
                         R.mipmap.mini_demo_restart_miniapp)
-                .addAbout(getString(R.string.applet_mini_proxy_impl_about),
+                .addAbout(getString(miniAppContext, R.string.applet_mini_proxy_impl_about),
                         R.mipmap.mini_demo_about)
-                .addDebug(getString(R.string.mini_sdk_more_item_debug),
+                .addDebug(getString(miniAppContext, R.string.mini_sdk_more_item_debug),
                         R.mipmap.mini_demo_about)
-                .addMonitor(getString(R.string.applet_mini_proxy_impl_performance),
+                .addMonitor(getString(miniAppContext, R.string.applet_mini_proxy_impl_performance),
                         R.mipmap.mini_demo_about)
-                .addComplaint(getString(R.string.applet_mini_proxy_impl_complain_and_report),
+                .addComplaint(getString(miniAppContext, R.string.applet_mini_proxy_impl_complain_and_report),
                         R.mipmap.mini_demo_browser_report);
 
         return builder.build();
     }
 
-    private String getString(int id) {
-        return TMFBase.getContext().getString(id);
+    private String getString(IMiniAppContext miniAppContext, int id) {
+        return miniAppContext.getContext().getString(id);
     }
 
     /**

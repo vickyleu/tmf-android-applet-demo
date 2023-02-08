@@ -69,12 +69,16 @@ public class CommonSp extends BaseSp {
         remove(mEditor, KEY_CONFIG_FILE_PATH);
     }
 
-    public String getUserName() {
-        return getString(mSharedPreferences, KEY_USER_NAME, "");
+    public String getUserName(Context context) {
+        return getString(context.getSharedPreferences(FILE_NAME, MODE_PRIVATE), KEY_USER_NAME, "");
     }
 
-    public void putUserName(String name) {
-        putString(mEditor, KEY_USER_NAME, name);
+    public void putUserName(Context context, String name) {
+        putString(context.getSharedPreferences(FILE_NAME, MODE_PRIVATE).edit(), KEY_USER_NAME, name);
+    }
+
+    public void removeUserName() {
+        remove(mEditor, KEY_USER_NAME);
     }
 
     public void putSkipLogin(boolean isSkipLogin) {

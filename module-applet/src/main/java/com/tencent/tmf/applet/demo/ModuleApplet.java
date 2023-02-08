@@ -31,7 +31,7 @@ public class ModuleApplet implements Module {
     public static  String COUNTRY = "中国";
     public static  String PROVINCE = "北京市";
     public static  String CITY = "北京市";
-    public static final String TMF_CONFIGURATIONS = "server/tmf-android-configurations-xiao.json";
+    public static final String TMF_CONFIGURATIONS = "server/tmf-android-configurations-xiao-test.json";
     //feedback 测试
 //    public static final String TMF_CONFIGURATIONS = "server/tmf-android-configurations-feedback.json";
     public static Application sApp;
@@ -100,6 +100,7 @@ public class ModuleApplet implements Module {
                 .debug(true)
                 .build();
         TmfMiniSDK.init(application, config);
+
         COUNTRY = sApp.getResources().getString(R.string.applet_mini_data_country);
         CITY = sApp.getResources().getString(R.string.applet_mini_proxy_city);
         PROVINCE = sApp.getResources().getString(R.string.applet_mini_proxy_province);

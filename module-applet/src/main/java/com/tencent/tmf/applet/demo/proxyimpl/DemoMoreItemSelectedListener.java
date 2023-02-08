@@ -1,6 +1,10 @@
 package com.tencent.tmf.applet.demo.proxyimpl;
 
+import static com.tencent.tmf.applet.demo.proxyimpl.ShareProxyImpl.OTHER_MORE_ITEM_1;
+import static com.tencent.tmf.applet.demo.proxyimpl.ShareProxyImpl.OTHER_MORE_ITEM_2;
+
 import android.app.Activity;
+import android.widget.Toast;
 
 import com.tencent.tmfmini.sdk.launcher.core.IMiniAppContext;
 import com.tencent.tmfmini.sdk.launcher.log.QMLog;
@@ -15,6 +19,14 @@ public class DemoMoreItemSelectedListener extends DefaultMoreItemSelectedListene
         switch (moreItemId) {
             case CLOSE_MINI_APP:
                 close(miniAppContext);
+                return;
+            case OTHER_MORE_ITEM_1:
+                miniAppContext.getAttachedActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(miniAppContext.getAttachedActivity(), "custom menu click", Toast.LENGTH_SHORT).show();
+                    }
+                });
                 return;
         }
 

@@ -101,7 +101,7 @@
 
 
     <string name="applet_mini_proxy_impl_other1">Other1</string>
-    <string name="applet_mini_proxy_impl_other2">CustomShare</string>
+    <string name="applet_mini_proxy_impl_other2">twitter</string>
     <string name="applet_mini_proxy_impl_float_app">Float</string>
     <string name="applet_mini_proxy_impl_out_of_effect">Id out of [100,200]</string>
     <string name="applet_mini_proxy_impl_cancel_top">Cancel top</string>
@@ -120,4 +120,6 @@
     <string name="applet_mini_data_country">China</string>
     <string name="applet_mini_proxy_province">Beijing</string>
     <string name="applet_mini_proxy_city">Beijing</string>
+    <string name="applet_mini_auth">Auth</string>
+
 </resources>

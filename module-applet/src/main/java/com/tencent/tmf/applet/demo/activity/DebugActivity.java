@@ -57,7 +57,7 @@ public class DebugActivity extends AppCompatActivity implements XGCOnRVItemClick
         mAdapter.setOnRVItemClickListener(this);
 
         ArrayList<DebugEntity> serverConfigEntities = new ArrayList<>();
-        serverConfigEntities.add(new DebugEntity("UserName", CommonSp.getInstance().getUserName(), DebugEntity.TYPE_1));
+        serverConfigEntities.add(new DebugEntity("UserName", CommonSp.getInstance().getUserName(this), DebugEntity.TYPE_1));
         JSONObject debugInfo = TmfMiniSDK.getDebugInfo();
         serverConfigEntities
                 .add(new DebugEntity("BaseLibVersion", debugInfo.optString("MiniBaseLibVersion"), DebugEntity.TYPE_1));

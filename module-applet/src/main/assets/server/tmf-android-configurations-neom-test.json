@@ -1,0 +1,20 @@
+{
+  "channel": "Android",
+  "customId": "426e82b0-698c-11ed-be16-e58b814adb8e",
+  "feedback": "http://81.70.151.103:32704/#/home",
+  "material": "01vy2K0S1S2cJg1e+Ckf/t+L3WO7xmz4UUNw8wFhsbmwU2fPidvMzp7jWdQHcDsm435gaEedcxyn4nOLrXdIrKPF3pJT6VWeZ0OK+s3WeRh3Vg9Uz4mIPrzTYjKoHVOxP8lYZ+eGQH0GcMt7mfWUt79EzMjZ+NgTVjfaVdBtjA6opilu/oxmGUoH5AWqs0ladoQLUwkiU8kfQaF4/GSe0wM8rCoA0AYg8JCsibZaxmavAi0RegThYNwEecKJI5MhHRc61yfu+JLT15CtmXzcepHdizBEU+OpzVt+bAIvNVtX/WdBhPovjzd4XzPzGimVYcy0uUkvTdemIRBR674qovqCV8CUuyLVa/qXUzCXgDkXzBWEni2qzbjO6OmWcTkOk2OJleiaboxhSoLeSkAmnvs+i1KNmEfnPlii+/6QbyV9wegBcIuyuWWfbUGRI/7pGv6Qx8sKuKlMOX43FUUSq0a5l0XiDuA+YCuzdGDkvqBnRfISaA+m5AS2pYetRfRJXF1QiI1PgoncAt7r5sDZaDeQJYMhuaoZ+wuTh/gQBL6SY/D43edxsMF3bjnxn4A1geCNZoaztQGkpjoGWXtF10Sp6ztfoorMILyExGLNdWPWF3E6MFXD8EMD87l2eGpZPGEyS/EFVlYGKP5B8paQk6Ujd6TA+eCj+IMLiKjzQFtiKzz1FHw3I3WnOdO1JlN3pJu7WI111DtWp/8+KmicYMshcVMuTSyn//tmXrFfEofKo=d79017fe68172b28",
+  "packageName": "superappsso",
+  "productId": "8709",
+  "qapm": {
+    "appKey": "None",
+    "url": "xxx"
+  },
+  "shark": {
+    "appKey": "app-2n1j38h8v0",
+    "asymEnc": 1,
+    "httpUrl": "http://154.8.212.82:30013",
+    "symEnc": 2,
+    "tcpHost": "154.8.212.82",
+    "tcpPort": 30014
+  }
+}

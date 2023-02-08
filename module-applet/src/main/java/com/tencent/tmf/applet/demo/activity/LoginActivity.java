@@ -218,7 +218,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
 
             final String finalName = userName;
             final String finalPwd = password;
-            TmfMiniSDK.login(userName, password, isOpenLogin, new MiniCallback<Void>() {
+            TmfMiniSDK.loginTmf(userName, password, isOpenLogin, new MiniCallback<Void>() {
                 @Override
                 public void value(int code, String msg, Void data) {
                     dialog.dismiss();
@@ -235,7 +235,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
                                         CommonSp.getInstance().putUser(finalName, finalPwd);
 
                                         TmfMiniSDK.setUserId(finalName);
-                                        CommonSp.getInstance().putUserName(finalName);
+                                        CommonSp.getInstance().putUserName(LoginActivity.this, finalName);
                                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                         LoginActivity.this.finish();
                                     }

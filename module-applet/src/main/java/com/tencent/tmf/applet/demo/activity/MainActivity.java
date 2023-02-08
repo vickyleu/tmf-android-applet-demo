@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.ResultReceiver;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -36,6 +35,7 @@ import com.qmuiteam.qmui.widget.popup.QMUIListPopup;
 import com.qmuiteam.qmui.widget.popup.QMUIPopup;
 import com.tencent.tmf.applet.demo.R;
 import com.tencent.tmf.applet.demo.dialog.AppidDialog;
+import com.tencent.tmf.applet.demo.proxyimpl.TestData;
 import com.tencent.tmf.applet.demo.sp.impl.CommonSp;
 import com.tencent.tmf.applet.demo.ui.adapter.AppAdapter;
 import com.tencent.tmf.common.gen.ModuleAppletConst;
@@ -107,8 +107,14 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
     private ResultReceiver mResultReceiver = new ResultReceiver(new Handler()) {
         @Override
         protected void onReceiveResult(int resultCode, Bundle resultData) {
-            if (resultCode != MiniCode.CODE_OK) {
-                String errMsg = resultData.getString("errMsg");
+            if(resultCode == MiniCode.STATUS_CODE_SERVER_REQUEST_DELETE){
+                //小程序下架逻辑处理, 移除列表小程序
+                String appId = resultData.getString(MiniCode.KEY_APPID);
+                int appVerType = resultData.getInt(MiniCode.KEY_APP_VER_TYPE);
+                mAppAdapter.remove(appId, appVerType);
+            }else if (resultCode != MiniCode.CODE_OK) {
+                //小程序启动错误
+                String errMsg = resultData.getString(MiniCode.KEY_ERR_MSG);
                 Toast.makeText(mActivity, errMsg + resultCode, Toast.LENGTH_SHORT).show();
             }
         }
@@ -260,7 +266,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
                                 startActivity(new Intent(MainActivity.this, DebugActivity.class));
                                 break;
                             case 3:
-                                TmfMiniSDK.logout();
+                                CommonSp.getInstance().removeUserName();
+                                TmfMiniSDK.logoutTmf();
                                 CommonSp.getInstance().removeSkipLogin();
                                 finish();
                                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
@@ -391,6 +398,5 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.d("xiao1", "onDestroy");
     }
 }

@@ -23,6 +23,7 @@ import com.tencent.tmf.applet.demo.ui.SpaceItemDecoration;
 import com.tencent.tmf.applet.demo.ui.adapter.ServerConfigAdapter;
 import com.tencent.tmf.applet.demo.ui.entity.ServerConfigEntity;
 import com.tencent.tmf.applet.demo.utils.FileUtil;
+import com.tencent.tmf.mini.api.TmfMiniSDK;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -48,8 +49,9 @@ public class ServerConfigListActivity extends AppCompatActivity implements XGCOn
     private File mCurrentSelectConfigFile = null;
     private String oldConfigPath = null;
 
-    public static void killMyself() {
+    public void killMyself() {
         //这里可以重启你的应用程序，我的app中有service，所以我只要杀死进程就自动重启了。
+        TmfMiniSDK.stopAllMiniApp(this);
         android.os.Process.killProcess(android.os.Process.myPid());
     }
 

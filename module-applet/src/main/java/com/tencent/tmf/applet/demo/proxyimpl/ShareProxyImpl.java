@@ -129,19 +129,20 @@ public class ShareProxyImpl extends BaseShareProxy {
      */
     public void shareToOther(Activity activity, ShareData shareData) {
         switch (shareData.shareItemId) {
-            case OTHER_MORE_ITEM_1:
-                if (shareData.shareInMiniProcess) {
-                    activity.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(activity, "custom menu click", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
-                break;
+//            case OTHER_MORE_ITEM_1:
+//                if (shareData.shareInMiniProcess) {
+//                    activity.runOnUiThread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//
+//                        }
+//                    });
+//                }
+//                break;
             case OTHER_MORE_ITEM_2:
-            default:
                 Toast.makeText(activity, "custom share", Toast.LENGTH_SHORT).show();
+                break;
+            default:
                 break;
         }
     }

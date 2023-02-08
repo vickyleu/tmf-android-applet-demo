@@ -97,7 +97,7 @@
         <item> 退出登录</item>
     </string-array>
     <string name="applet_mini_proxy_impl_other1">其他1</string>
-    <string name="applet_mini_proxy_impl_other2">自定义分享</string>
+    <string name="applet_mini_proxy_impl_other2">twitter</string>
     <string name="applet_mini_proxy_impl_float_app">浮窗</string>
     <string name="applet_mini_proxy_impl_out_of_effect">无效，id不属于区间[100,200]，不会显示在面板上</string>
     <string name="applet_mini_proxy_impl_cancel_top">取消置顶</string>
@@ -116,6 +116,8 @@
     <string name="applet_mini_data_country">中国</string>
     <string name="applet_mini_proxy_province">北京</string>
     <string name="applet_mini_proxy_city">北京</string>
+
+    <string name="applet_mini_auth">授权</string>
 
 
 </resources>
