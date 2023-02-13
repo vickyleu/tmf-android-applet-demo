@@ -26,16 +26,7 @@ allprojects {
         google()
         jcenter()
         maven { url "https://jitpack.io" }
-        maven {
-            url 'https://t.pinpad.qq.com/fHKFBbEjd/repository/maven-public/'
-            credentials {
-                username 'tmf_read'
-                password 'psnBSt@BVMva6#&^'
-            }
-            authentication {
-                basic(BasicAuthentication)
-            }
-        }
+        maven { url 'https://tmf-work-maven.pkg.coding.net/repository/tmf/android/'}
     }
 }
 
