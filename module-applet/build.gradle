@@ -44,6 +44,7 @@ dependencies {
 
     /////////////////////tmf组件依赖 start////////////////////////////
     implementation "com.google.android.material:material:1.3.0-alpha03"
+    implementation 'androidx.core:core-ktx:1.6.0'
     //gosn
     implementation 'com.google.code.gson:gson:2.8.6'
     // ok-http
@@ -52,10 +53,10 @@ dependencies {
     implementation 'com.tencent.tbs.tbssdk:sdk:43903'
     // mini app start
     kapt 'com.tencent.tmf.android:mini_annotation_processor:1.4.1-SNAPSHOT'
-    implementation 'com.tencent.tmf.android:mini_core:1.4.40-SNAPSHOT'
+    implementation 'com.tencent.tmf.android:mini_core:1.4.51-SNAPSHOT'
     //扫码扩展组件
     implementation 'com.tencent.tmf.android:mini_extra_qrcode:1.4.2-SNAPSHOT'
     //google定位地图扩展组件
-    implementation 'com.tencent.tmf.android:mini_extra_google_map:1.4.15-SNAPSHOT'
+    implementation 'com.tencent.tmf.android:mini_extra_google_map:1.4.16-SNAPSHOT'
     // mini app end
 }
