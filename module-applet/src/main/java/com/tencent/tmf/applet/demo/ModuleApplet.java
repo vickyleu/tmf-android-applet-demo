@@ -28,9 +28,9 @@ public class ModuleApplet implements Module {
 
     public static final String TAG = "TMF_APPLET_DEMO";
     public static final String IMEI = "test002";
-    public static  String COUNTRY = "中国";
-    public static  String PROVINCE = "北京市";
-    public static  String CITY = "北京市";
+    public static  String COUNTRY = "";
+    public static  String PROVINCE = "";
+    public static  String CITY = "";
     public static final String TMF_CONFIGURATIONS = "server/tmf-android-configurations-xiao-test.json";
     //feedback 测试
 //    public static final String TMF_CONFIGURATIONS = "server/tmf-android-configurations-feedback.json";
@@ -95,17 +95,25 @@ public class ModuleApplet implements Module {
             builder.configAssetName(TMF_CONFIGURATIONS);
         }
 
-        MiniInitConfig config = builder.verifyPkg(false)
-                .imei(IMEI)
+        boolean privacyAuth = CommonSp.getInstance().isPrivacyAuth(application);
+
+        MiniInitConfig config = builder
+                .verifyPkg(false)//可选
+                .imei(IMEI)//可选
                 .debug(true)
+                .privacyAuth(privacyAuth)//隐私授权
                 .build();
         TmfMiniSDK.init(application, config);
 
         COUNTRY = sApp.getResources().getString(R.string.applet_mini_data_country);
         CITY = sApp.getResources().getString(R.string.applet_mini_proxy_city);
         PROVINCE = sApp.getResources().getString(R.string.applet_mini_proxy_province);
-        TmfMiniSDK.setLocation(COUNTRY, PROVINCE, CITY);
 
-        TmfMiniSDK.preloadMiniApp(application, null);
+        if (privacyAuth) {
+            //只有隐私授权后才能调用TmfMiniSDK相关API
+            TmfMiniSDK.setLocation(COUNTRY, PROVINCE, CITY);
+            TmfMiniSDK.preloadMiniApp(application, null);
+        }
+
     }
 }

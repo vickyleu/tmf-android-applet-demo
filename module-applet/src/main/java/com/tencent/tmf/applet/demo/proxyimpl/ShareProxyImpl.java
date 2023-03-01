@@ -9,6 +9,9 @@ import android.widget.Toast;
 
 import com.tencent.connect.share.QQShare;
 import com.tencent.connect.share.QzoneShare;
+import com.tencent.tauth.IUiListener;
+import com.tencent.tauth.Tencent;
+import com.tencent.tauth.UiError;
 import com.tencent.tmfmini.sdk.annotation.ProxyService;
 import com.tencent.tmfmini.sdk.launcher.AppLoaderFactory;
 import com.tencent.tmfmini.sdk.launcher.core.IMiniAppContext;
@@ -17,9 +20,6 @@ import com.tencent.tmfmini.sdk.launcher.core.proxy.ShareProxy;
 import com.tencent.tmfmini.sdk.launcher.model.ShareData;
 import com.tencent.tmfmini.sdk.launcher.ui.MoreItem;
 import com.tencent.tmfmini.sdk.ui.MorePanel;
-import com.tencent.tauth.IUiListener;
-import com.tencent.tauth.Tencent;
-import com.tencent.tauth.UiError;
 
 import java.util.ArrayList;
 
@@ -174,11 +174,5 @@ public class ShareProxyImpl extends BaseShareProxy {
 //            Toast.makeText(mContext, "share Cancel", Toast.LENGTH_SHORT).show();
             mShareData.notifyShareResult(mContext, ShareData.ShareResult.CANCEL);
         }
-    }
-
-    @Override
-    public void showSharePanel(IMiniAppContext miniAppContext) {
-        //固定写如下代码即可
-        MorePanel.show(miniAppContext);
     }
 }

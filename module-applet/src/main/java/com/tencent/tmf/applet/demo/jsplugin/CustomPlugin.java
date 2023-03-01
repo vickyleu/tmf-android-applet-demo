@@ -1,5 +1,8 @@
 package com.tencent.tmf.applet.demo.jsplugin;
 
+import android.util.Log;
+
+import com.tencent.tmf.applet.demo.ModuleApplet;
 import com.tencent.tmfmini.sdk.annotation.JsEvent;
 import com.tencent.tmfmini.sdk.annotation.JsPlugin;
 import com.tencent.tmfmini.sdk.launcher.core.model.RequestEvent;
@@ -16,6 +19,7 @@ public class CustomPlugin extends BaseJsPlugin {
         //异步返回数据
         //req.fail();
         //req.ok();
+        Log.d(ModuleApplet.TAG, "CustomPlugin=" + req.jsonParams);
         req.ok(new JSONObject());
     }
 

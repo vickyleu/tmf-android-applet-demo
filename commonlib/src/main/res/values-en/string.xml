@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="common_lib_tips">Welcome to Mini Program</string>
+    <string name="applet_main_act_delete_msg_confirm">confirm</string>
+    <string name="applet_main_act_delete_msg_cancal">cancel</string>
+    <string name="applet_main_privacy_auth">Privacy authorization</string>
+    <string name="applet_main_privacy_auth_content">Do you agree to xxx authorization</string>
+</resources>

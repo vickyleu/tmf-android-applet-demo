@@ -13,8 +13,10 @@ import com.tencent.tmf.applet.demo.ModuleApplet;
 import com.tencent.tmf.applet.demo.R;
 import com.tencent.tmf.applet.demo.sp.impl.CommonSp;
 import com.tencent.tmf.applet.demo.utils.UniversalDrawable;
+import com.tencent.tmf.mini.api.bean.MiniAppLoading;
 import com.tencent.tmf.mini.api.bean.MiniAuthInfo;
 import com.tencent.tmf.mini.api.callback.IAuthView;
+import com.tencent.tmf.mini.api.callback.IMiniLoading;
 import com.tencent.tmfmini.sdk.annotation.ProxyService;
 import com.tencent.tmfmini.sdk.launcher.core.IMiniAppContext;
 import com.tencent.tmfmini.sdk.launcher.core.proxy.AsyncResult;
@@ -34,9 +36,64 @@ import java.util.Map;
 
 @ProxyService(proxy = MiniAppProxy.class)
 public class MiniAppProxyImpl extends BaseMiniAppProxyImpl {
-
-    private static final String TAG = "MiniAppProxyImpl";
     private static final String SHARE_TWITTER = "twitter";
+
+    /**
+     * 自定义小程序检查更新loading页面
+     * @param context
+     * @return
+     */
+    @Override
+    public IMiniLoading updateLoadingView(Context context) {
+//        return new IMiniLoading() {
+//            @Override
+//            public View create() {
+//                return LayoutInflater.from(context).inflate(R.layout.applet_activity_custom_update_loading, null);
+//            }
+//
+//            @Override
+//            public void show(View v) {
+//
+//            }
+//
+//            @Override
+//            public void stop(View v) {
+//
+//            }
+//        };
+
+        return null;
+    }
+
+    /**
+     * 自定义小程序加载loading页面
+     * 调用环境：主进程
+     *
+     * @param context 小程序上下文
+     * @param app 小程序信息
+     * @return 返回小程序loading UI
+     */
+    @Override
+    public IMiniLoading startLoadingView(Context context, MiniAppLoading app) {
+//        return new IMiniLoading() {
+//            @Override
+//            public View create() {
+//                return LayoutInflater.from(context).inflate(R.layout.applet_activity_custom_start_loading, null);
+//            }
+//
+//            @Override
+//            public void show(View v) {
+//
+//            }
+//
+//            @Override
+//            public void stop(View v) {
+//
+//            }
+//        };
+
+        return null;
+    }
 
     /**
      * 用户账号,可选配置，设置后数据会按账号隔离存储小程序数据

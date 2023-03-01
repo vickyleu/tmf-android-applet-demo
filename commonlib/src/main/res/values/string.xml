@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="common_lib_tips">欢迎体验TMF小程序</string>
+    <string name="applet_main_act_delete_msg_confirm">确定</string>
+    <string name="applet_main_act_delete_msg_cancal">取消</string>
+    <string name="applet_main_privacy_auth">隐私授权</string>
+    <string name="applet_main_privacy_auth_content">是否同意xxx授权</string>
+</resources>

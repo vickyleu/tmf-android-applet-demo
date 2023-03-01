@@ -35,7 +35,6 @@ import com.qmuiteam.qmui.widget.popup.QMUIListPopup;
 import com.qmuiteam.qmui.widget.popup.QMUIPopup;
 import com.tencent.tmf.applet.demo.R;
 import com.tencent.tmf.applet.demo.dialog.AppidDialog;
-import com.tencent.tmf.applet.demo.proxyimpl.TestData;
 import com.tencent.tmf.applet.demo.sp.impl.CommonSp;
 import com.tencent.tmf.applet.demo.ui.adapter.AppAdapter;
 import com.tencent.tmf.common.gen.ModuleAppletConst;
@@ -73,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
             Manifest.permission.READ_PHONE_STATE,
             Manifest.permission.VIBRATE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.SYSTEM_ALERT_WINDOW,
             //蓝牙
             permission.BLUETOOTH,
             permission.BLUETOOTH_ADMIN,
@@ -129,7 +129,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         mActivity = this;
         initView();
         initRecyclerView();
-
     }
 
 
@@ -182,6 +181,10 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
     @Override
     protected void onResume() {
         super.onResume();
+        loadRecentMini();
+    }
+
+    private void loadRecentMini(){
         TmfMiniSDK.getRecentList(new IRecentMiniCallback() {
             @Override
             public void get(List<MiniApp> data) {

@@ -1,6 +1,7 @@
 package com.tencent.tmf.applet.demo.service;
 
 import android.app.Activity;
+import android.content.Context;
 
 import com.tencent.tmf.mini.api.TmfMiniSDK;
 import com.tencent.tmf.applet.demo.sp.impl.CommonSp;
@@ -21,5 +22,17 @@ public class AppletServiceImpl implements IAppletService {
                 Portal.from(activity).url(ModuleAppletConst.U_MAIN_ACTIVITY).launch();
             }
         }
+    }
+
+    @Override
+    public boolean isPrivacyAuth(Context context) {
+        return CommonSp.getInstance().isPrivacyAuth(context);
+    }
+
+    @Override
+    public void agreePrivacyAuth(Context context) {
+        CommonSp.getInstance().putPrivacyAuth(context, true);
+        //同意隐私授权
+        TmfMiniSDK.agreePrivacyAuth();
     }
 }

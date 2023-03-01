@@ -54,7 +54,7 @@
                     android:completionThreshold="1"
                     android:dropDownHorizontalOffset="0dp"
                     android:hint="@string/applet_input_username_yy"
-                    android:text="shanlianmeng" />
+                    android:text="" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -68,7 +68,7 @@
                         android:hint="@string/applet_input_pwd_yy"
                         android:inputType="textPassword"
                         android:paddingEnd="40dp"
-                        android:text="tmf123" />
+                        android:text="" />
 
                     <ImageView
                         android:id="@+id/operate_password_eye"
@@ -96,7 +96,7 @@
                     android:completionThreshold="1"
                     android:dropDownHorizontalOffset="0dp"
                     android:hint="@string/applet_input_open_username"
-                    android:text="mdev05301" />
+                    android:text="" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -109,7 +109,7 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/applet_input_open_pwd"
                         android:inputType="textPassword"
-                        android:text="tmf123"
+                        android:text=""
                         android:paddingEnd="40dp"/>
 
                     <ImageView

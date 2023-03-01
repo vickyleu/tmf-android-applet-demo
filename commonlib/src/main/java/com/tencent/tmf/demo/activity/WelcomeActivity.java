@@ -1,5 +1,7 @@
 package com.tencent.tmf.demo.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
@@ -9,7 +11,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.tencent.tmf.common.R;
-import com.tencent.tmf.common.gen.ModuleAppletConst;
 import com.tencent.tmf.common.service.IAppletService;
 import com.tencent.tmf.portal.Portal;
 
@@ -26,14 +27,44 @@ public class WelcomeActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.applet_activity_welcome);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                IAppletService service = Portal.getService(IAppletService.class);
-                service.startAppletModule(WelcomeActivity.this);
-                finish();
-            }
-        }, 1000);
+        final IAppletService service = Portal.getService(IAppletService.class);
+        if (service.isPrivacyAuth(this)) {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    service.startAppletModule(WelcomeActivity.this);
+                    finish();
+                }
+            }, 1000);
+        } else {
+            showPrivateAuth();
+        }
+    }
+
+    private void showPrivateAuth() {
+        final AlertDialog alertDialog = new AlertDialog.Builder(this)
+                .setTitle(R.string.applet_main_privacy_auth)//标题
+                .setMessage(R.string.applet_main_privacy_auth_content)//内容
+                .setPositiveButton(R.string.applet_main_act_delete_msg_confirm, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        final IAppletService service = Portal.getService(IAppletService.class);
+                        //同意隐私授权
+                        service.agreePrivacyAuth(WelcomeActivity.this);
+                        service.startAppletModule(WelcomeActivity.this);
+                        finish();
+                    }
+                })
+                .setNegativeButton(R.string.applet_main_act_delete_msg_cancal, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        android.os.Process.killProcess(android.os.Process.myPid());
+                    }
+                })
+                .setCancelable(false)
+                .create();
+        alertDialog.show();
     }
 }
 

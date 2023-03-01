@@ -88,8 +88,7 @@
     <!--mainActivity-->
     <string name="applet_main_act_delete">删除</string>
     <string name="applet_main_act_delete_msg">是否删除小程序 %1$s \n %2$s</string>
-    <string name="applet_main_act_delete_msg_confirm">确定</string>
-    <string name="applet_main_act_delete_msg_cancal">取消</string>
+
     <string-array name="applet_menu_item">
         <item> 扫一扫</item>
         <item> AppId搜索</item>
@@ -114,8 +113,8 @@
     <string name="applet_mini_proxy_impl_move_top">置顶</string>
 
     <string name="applet_mini_data_country">中国</string>
-    <string name="applet_mini_proxy_province">北京</string>
-    <string name="applet_mini_proxy_city">北京</string>
+    <string name="applet_mini_proxy_province">北京市</string>
+    <string name="applet_mini_proxy_city">北京市</string>
 
     <string name="applet_mini_auth">授权</string>
 

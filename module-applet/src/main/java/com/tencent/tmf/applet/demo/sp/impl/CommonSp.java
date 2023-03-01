@@ -35,6 +35,7 @@ public class CommonSp extends BaseSp {
     private static final String KEY_OPERATE_USER = "operate_user";
     private static final String KEY_USER = "user";
     private static final String KEY_LAST_USER = "last_user";
+    private static final String KEY_IS_PRIVACY = "is_privacy_auth";
 
 
     private static volatile CommonSp mInstatnce;
@@ -190,6 +191,14 @@ public class CommonSp extends BaseSp {
      */
     public void clearAll() {
         clear(mEditor);
+    }
+
+    public boolean isPrivacyAuth(Context context) {
+        return getBoolean(context.getSharedPreferences(FILE_NAME, MODE_PRIVATE), KEY_IS_PRIVACY, false);
+    }
+
+    public void putPrivacyAuth(Context context, boolean value) {
+        putBoolean(context.getSharedPreferences(FILE_NAME, MODE_PRIVATE).edit(), KEY_IS_PRIVACY, value);
     }
 
     public static class User {
