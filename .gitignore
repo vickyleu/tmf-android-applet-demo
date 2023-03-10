@@ -6,9 +6,6 @@
 bin/
 gen/
 build/
-/gradle
-/gradlew
-/gradlew.bat
 /local.properties
 /.gradle
 /.idea
