@@ -6,7 +6,7 @@
 bin/
 gen/
 build/
-/local.properties
+local.properties
 /.gradle
 /.idea
 /build
