@@ -50,10 +50,11 @@ dependencies {
     // ok-http
     implementation "com.squareup.okhttp3:okhttp:3.12.13"
     //x5内核
-    implementation 'com.tencent.tbs.tbssdk:sdk:43903'
+    implementation 'com.tencent.tbs:tbssdk:44286'
+//    implementation 'com.tencent.tmf.android:tbscore:20230227_102520_20230227_102520'
     // mini app start
     kapt 'com.tencent.tmf.android:mini_annotation_processor:1.4.1-SNAPSHOT'
-    implementation 'com.tencent.tmf.android:mini_core:1.4.63-SNAPSHOT'
+    implementation 'com.tencent.tmf.android:mini_core:1.4.68-SNAPSHOT'
     //扫码扩展组件
     implementation 'com.tencent.tmf.android:mini_extra_qrcode:1.4.2-SNAPSHOT'
     //google定位地图扩展组件

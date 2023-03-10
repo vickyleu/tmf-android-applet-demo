@@ -107,12 +107,12 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
     private ResultReceiver mResultReceiver = new ResultReceiver(new Handler()) {
         @Override
         protected void onReceiveResult(int resultCode, Bundle resultData) {
-            if(resultCode == MiniCode.STATUS_CODE_SERVER_REQUEST_DELETE){
+            if (resultCode == MiniCode.STATUS_CODE_SERVER_REQUEST_DELETE) {
                 //小程序下架逻辑处理, 移除列表小程序
                 String appId = resultData.getString(MiniCode.KEY_APPID);
                 int appVerType = resultData.getInt(MiniCode.KEY_APP_VER_TYPE);
                 mAppAdapter.remove(appId, appVerType);
-            }else if (resultCode != MiniCode.CODE_OK) {
+            } else if (resultCode != MiniCode.CODE_OK) {
                 //小程序启动错误
                 String errMsg = resultData.getString(MiniCode.KEY_ERR_MSG);
                 Toast.makeText(mActivity, errMsg + resultCode, Toast.LENGTH_SHORT).show();
@@ -184,7 +184,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         loadRecentMini();
     }
 
-    private void loadRecentMini(){
+    private void loadRecentMini() {
         TmfMiniSDK.getRecentList(new IRecentMiniCallback() {
             @Override
             public void get(List<MiniApp> data) {
@@ -266,7 +266,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
                                 new AppidDialog(MainActivity.this).show();
                                 break;
                             case 2:
-                                startActivity(new Intent(MainActivity.this, DebugActivity.class));
+                                startActivity(new Intent(MainActivity.this, SettingActivity.class));
                                 break;
                             case 3:
                                 CommonSp.getInstance().removeUserName();
@@ -309,9 +309,10 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         miniStartOptions.resultReceiver = mResultReceiver;
         //"entryPagePath": "page/API/index",
         //pages/cart/index.html
-//        miniStartOptions.entryPath = "packageAPI/pages/api/login/login.html";
+//        miniStartOptions.entryPath = "packageAPI/pages/api/login/login.html?key=value";
 //        miniStartOptions.entryPath = "pages/cart/index";
 //        miniStartOptions.entryPath = "/pages/webH5/index?url=https%3A%2F%2Fwx.vzan.com%2Flive%2Ftvchat-1765195222%3Fv%3D1671595835420";
+//        miniStartOptions.params = "key=test111111";
         TmfMiniSDK.startMiniApp(this, item.appId, MiniScene.LAUNCH_SCENE_MAIN_ENTRY, item.appVerType, miniStartOptions);
     }
 

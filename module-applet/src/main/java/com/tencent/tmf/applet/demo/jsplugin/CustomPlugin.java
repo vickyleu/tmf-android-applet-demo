@@ -8,6 +8,7 @@ import com.tencent.tmfmini.sdk.annotation.JsPlugin;
 import com.tencent.tmfmini.sdk.launcher.core.model.RequestEvent;
 import com.tencent.tmfmini.sdk.launcher.core.plugins.BaseJsPlugin;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 @JsPlugin(secondary = true)
@@ -20,7 +21,13 @@ public class CustomPlugin extends BaseJsPlugin {
         //req.fail();
         //req.ok();
         Log.d(ModuleApplet.TAG, "CustomPlugin=" + req.jsonParams);
-        req.ok(new JSONObject());
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("key", "test");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        req.ok(jsonObject);
     }
 
     @JsEvent({"getSystemInfo", "getSystemInfoSync"})

@@ -1,41 +1,44 @@
 package com.tencent.tmf.applet.demo.activity;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.tencent.tmf.mini.api.TmfMiniSDK;
 import com.tencent.tmf.applet.demo.ModuleApplet;
 import com.tencent.tmf.applet.demo.R;
 import com.tencent.tmf.applet.demo.sp.impl.CommonSp;
 import com.tencent.tmf.applet.demo.ui.SpaceItemDecoration;
 import com.tencent.tmf.applet.demo.ui.adapter.DebugAdapter;
 import com.tencent.tmf.applet.demo.ui.entity.DebugEntity;
+import com.tencent.tmf.mini.api.TmfMiniSDK;
 
-import java.util.List;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import qiu.niorgai.StatusBarCompat;
 import xiao.framework.adapter.XGCOnRVItemClickListener;
 
-public class DebugActivity extends AppCompatActivity implements XGCOnRVItemClickListener {
+public class SettingActivity extends AppCompatActivity implements XGCOnRVItemClickListener, View.OnClickListener {
 
     private Toolbar mToolbar;
     private ImageView mAddImg;
     private RecyclerView mRecyclerView;
     private DebugAdapter mAdapter;
+    private TextView mDebugText;
+    private long time;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,6 +51,7 @@ public class DebugActivity extends AppCompatActivity implements XGCOnRVItemClick
     private void initView() {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mAddImg = (ImageView) findViewById(R.id.menu_img);
+        mDebugText = findViewById(R.id.text_debug);
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView1);
 
         mAdapter = new DebugAdapter(this);
@@ -80,11 +84,14 @@ public class DebugActivity extends AppCompatActivity implements XGCOnRVItemClick
 //        serverConfigEntities.add(new DebugEntity("小程序测试", "点击进入小程序测试页面", DebugEntity.TYPE_2));
         serverConfigEntities.add(new DebugEntity("CheckPermission", "CheckPermission", DebugEntity.TYPE_2));
         mAdapter.setDatas(serverConfigEntities);
+
+
+        mDebugText.setOnClickListener(this);
     }
 
     @Override
     public void onRVItemClick(ViewGroup parent, View itemView, int position) {
-        if ("CheckPermission".equals(mAdapter.getItem(position).title)){
+        if ("CheckPermission".equals(mAdapter.getItem(position).title)) {
             checkPermission();
         }
 //        if ("清除小程序基础库".equals(mAdapter.getItem(position).title)) {
@@ -95,6 +102,7 @@ public class DebugActivity extends AppCompatActivity implements XGCOnRVItemClick
 //
 //        }
     }
+
     private boolean checkPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             List<String> noPermissionList = new ArrayList<>();
@@ -115,5 +123,14 @@ public class DebugActivity extends AppCompatActivity implements XGCOnRVItemClick
         } else {
             return true;
         }
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (time != 0 && (System.currentTimeMillis() - time) < 300) {
+            startActivity(new Intent(this, TestActivity.class));
+            return;
+        }
+        time = System.currentTimeMillis();
     }
 }

@@ -3,6 +3,7 @@ package com.tencent.tmf.applet.demo.service;
 import android.app.Activity;
 import android.content.Context;
 
+import com.tencent.tmf.applet.demo.ModuleApplet;
 import com.tencent.tmf.mini.api.TmfMiniSDK;
 import com.tencent.tmf.applet.demo.sp.impl.CommonSp;
 import com.tencent.tmf.common.gen.ModuleAppletConst;
@@ -34,5 +35,7 @@ public class AppletServiceImpl implements IAppletService {
         CommonSp.getInstance().putPrivacyAuth(context, true);
         //同意隐私授权
         TmfMiniSDK.agreePrivacyAuth();
+        TmfMiniSDK.setLocation(ModuleApplet.COUNTRY, ModuleApplet.PROVINCE, ModuleApplet.CITY);
+        TmfMiniSDK.preloadMiniApp(context, null);
     }
 }

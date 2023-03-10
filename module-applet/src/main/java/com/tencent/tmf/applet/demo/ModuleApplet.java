@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.webkit.ValueCallback;
 
 import com.qmuiteam.qmui.arch.QMUISwipeBackActivityManager;
 import com.tencent.tmf.applet.demo.service.AppletServiceImpl;
@@ -31,7 +32,7 @@ public class ModuleApplet implements Module {
     public static  String COUNTRY = "";
     public static  String PROVINCE = "";
     public static  String CITY = "";
-    public static final String TMF_CONFIGURATIONS = "server/tmf-android-configurations-xiao-test.json";
+    public static final String TMF_CONFIGURATIONS = "server/tmf-android-configurations.json";
     //feedback 测试
 //    public static final String TMF_CONFIGURATIONS = "server/tmf-android-configurations-feedback.json";
     public static Application sApp;
