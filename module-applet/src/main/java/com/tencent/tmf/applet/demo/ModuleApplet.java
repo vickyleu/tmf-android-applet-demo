@@ -5,7 +5,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.webkit.ValueCallback;
 
 import com.qmuiteam.qmui.arch.QMUISwipeBackActivityManager;
 import com.tencent.tmf.applet.demo.service.AppletServiceImpl;
@@ -80,6 +79,8 @@ public class ModuleApplet implements Module {
         if (AppUtil.isMainProcess(application)) {
             GlideUtil.init(application);
             QMUISwipeBackActivityManager.init(application);
+//
+
         }
 
         MiniInitConfig.Builder builder = new MiniInitConfig.Builder();
@@ -116,5 +117,9 @@ public class ModuleApplet implements Module {
             TmfMiniSDK.preloadMiniApp(application, null);
         }
 
+//        String licenseUrl  = "https://license.vod2.myqcloud.com/license/v2/1252924592_1/v_cube.license";
+//        String licenseKey = "404116dbb1d0e0f91e333f58e2f8da8f";
+//        TXLiveBase.getInstance().setLicence(application.getApplicationContext(),licenseUrl,licenseKey);
+//        Log.d(TAG,"load license "+TXLiveBase.getInstance().getLicenceInfo(application));
     }
 }

@@ -42,6 +42,7 @@ import com.tencent.tmf.mini.api.TmfMiniSDK;
 import com.tencent.tmf.mini.api.bean.MiniApp;
 import com.tencent.tmf.mini.api.bean.MiniCode;
 import com.tencent.tmf.mini.api.bean.MiniScene;
+import com.tencent.tmf.mini.api.bean.MiniStartLinkOptions;
 import com.tencent.tmf.mini.api.bean.MiniStartOptions;
 import com.tencent.tmf.mini.api.callback.IRecentMiniCallback;
 import com.tencent.tmf.portal.Launcher;
@@ -90,7 +91,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
             permission.WRITE_CONTACTS,
             //短信
             permission.SEND_SMS,
-            permission.READ_SMS
+            permission.READ_SMS,
+            permission.RECORD_AUDIO
     };
     private static final int ITEMS_PER_ROW = 4;
     private Activity mActivity;
@@ -296,7 +298,11 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
             String result = scanResult.optString("result");
             if (!TextUtils.isEmpty(result)) {
                 //处理小程序二维码，非小程序二维码会返回错误
-                TmfMiniSDK.startMiniAppByLink(this, result, mResultReceiver);
+                MiniStartLinkOptions options = new MiniStartLinkOptions();
+//                options.entryPath = "packageAPI/pages/api/login/login.html?key=value";//支持url传递query参数
+//                options.params = "key=test111111";//支持传递参数
+                options.resultReceiver = mResultReceiver;
+                TmfMiniSDK.startMiniAppByLink(this, result, options);
             }
         }
     }
@@ -307,12 +313,13 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
 
         MiniStartOptions miniStartOptions = new MiniStartOptions();
         miniStartOptions.resultReceiver = mResultReceiver;
+//        miniStartOptions.isForceUpdate = true;
         //"entryPagePath": "page/API/index",
         //pages/cart/index.html
-//        miniStartOptions.entryPath = "packageAPI/pages/api/login/login.html?key=value";
+//        miniStartOptions.entryPath = "packageAPI/pages/api/login/login.html?key=value";//支持url传递query参数
 //        miniStartOptions.entryPath = "pages/cart/index";
 //        miniStartOptions.entryPath = "/pages/webH5/index?url=https%3A%2F%2Fwx.vzan.com%2Flive%2Ftvchat-1765195222%3Fv%3D1671595835420";
-//        miniStartOptions.params = "key=test111111";
+//        miniStartOptions.params = "key=test111111";//支持传递参数
         TmfMiniSDK.startMiniApp(this, item.appId, MiniScene.LAUNCH_SCENE_MAIN_ENTRY, item.appVerType, miniStartOptions);
     }
 

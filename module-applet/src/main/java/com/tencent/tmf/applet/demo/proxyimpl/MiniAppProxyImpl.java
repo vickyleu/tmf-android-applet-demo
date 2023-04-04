@@ -3,6 +3,7 @@ package com.tencent.tmf.applet.demo.proxyimpl;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.Log;
@@ -221,6 +222,30 @@ public class MiniAppProxyImpl extends BaseMiniAppProxyImpl {
     }
 
     /**
+     * 获取TypeFace对象
+     *
+     * @param context         上下文
+     * @param fontFamily      字体名
+     * @param isBold          是否加粗
+     */
+    @Override
+    public Typeface getTypeFace(Context context, String fontFamily, boolean isBold) {
+        if (context != null) {
+            try {
+                String[] paths = context.getAssets().list("");
+                for (String path: paths) {
+                    if (path.equalsIgnoreCase(fontFamily + ".ttf")) {
+                        return Typeface.createFromAsset(context.getAssets(), path);
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return super.getTypeFace(context, fontFamily, isBold);
+    }
+
+    /**
      * 打开选图界面
      *
      * @param context        当前Activity
@@ -338,7 +363,9 @@ public class MiniAppProxyImpl extends BaseMiniAppProxyImpl {
                 .addMonitor(getString(miniAppContext, R.string.applet_mini_proxy_impl_performance),
                         R.mipmap.mini_demo_about)
                 .addComplaint(getString(miniAppContext, R.string.applet_mini_proxy_impl_complain_and_report),
-                        R.mipmap.mini_demo_browser_report);
+                        R.mipmap.mini_demo_browser_report)
+                .addSetting(getString(miniAppContext, R.string.mini_sdk_more_item_setting),
+                        R.mipmap.mini_demo_setting);
 
         return builder.build();
     }
@@ -361,6 +388,20 @@ public class MiniAppProxyImpl extends BaseMiniAppProxyImpl {
     public boolean uploadUserLog(String appId, String logPath) {
         Log.d("TMF_MINI", "uploadUserLog " + appId + " logPath " + logPath);
         return false;
+    }
+
+    @Override
+    public String getLiveComponentLicenseUrl() {
+        //仅可用于demo
+        String licenseUrl = "https://license.vod2.myqcloud.com/license/v2/1256827439_1/v_cube.license";
+        return licenseUrl;
+    }
+
+    @Override
+    public String getLiveComponentLicenseKey() {
+        //仅可用于demo
+        String licenseKey = "ed666ec3381e0b89a7f5c9e8c72235cc";
+        return licenseKey;
     }
 }
 
