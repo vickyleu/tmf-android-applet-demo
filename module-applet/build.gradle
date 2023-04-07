@@ -54,7 +54,7 @@ dependencies {
     // implementation 'com.tencent.tmf.android:tbscore:20230227_102520_20230227_102520'
     // mini app start
     kapt 'com.tencent.tmf.android:mini_annotation_processor:1.4.1-SNAPSHOT'
-    implementation 'com.tencent.tmf.android:mini_core:1.4.75-SNAPSHOT'
+    implementation 'com.tencent.tmf.android:mini_core:1.4.75.3-SNAPSHOT'
     //扫码扩展组件
     implementation 'com.tencent.tmf.android:mini_extra_qrcode:1.4.3-SNAPSHOT'
     //google定位地图扩展组件
