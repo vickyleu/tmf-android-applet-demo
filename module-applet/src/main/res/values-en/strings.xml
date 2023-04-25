@@ -121,5 +121,6 @@
     <string name="applet_mini_proxy_province">Beijing</string>
     <string name="applet_mini_proxy_city">Beijing</string>
     <string name="applet_mini_auth">Auth</string>
+    <string name="applet_mini_reject">Reject</string>
 
 </resources>

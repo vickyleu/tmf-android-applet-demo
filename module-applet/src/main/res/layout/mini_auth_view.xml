@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
-            android:text="@string/mini_sdk_reject" />
+            android:text="@string/applet_mini_reject" />
 
         <Button
             android:id="@+id/mini_auth_btn_grant"

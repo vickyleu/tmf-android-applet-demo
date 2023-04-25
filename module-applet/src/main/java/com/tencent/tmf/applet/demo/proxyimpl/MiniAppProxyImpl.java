@@ -40,63 +40,6 @@ public class MiniAppProxyImpl extends BaseMiniAppProxyImpl {
     private static final String SHARE_TWITTER = "twitter";
 
     /**
-     * 自定义小程序检查更新loading页面
-     * @param context
-     * @return
-     */
-    @Override
-    public IMiniLoading updateLoadingView(Context context) {
-//        return new IMiniLoading() {
-//            @Override
-//            public View create() {
-//                return LayoutInflater.from(context).inflate(R.layout.applet_activity_custom_update_loading, null);
-//            }
-//
-//            @Override
-//            public void show(View v) {
-//
-//            }
-//
-//            @Override
-//            public void stop(View v) {
-//
-//            }
-//        };
-
-        return null;
-    }
-
-    /**
-     * 自定义小程序加载loading页面
-     * 调用环境：主进程
-     *
-     * @param context 小程序上下文
-     * @param app 小程序信息
-     * @return 返回小程序loading UI
-     */
-    @Override
-    public IMiniLoading startLoadingView(Context context, MiniAppLoading app) {
-//        return new IMiniLoading() {
-//            @Override
-//            public View create() {
-//                return LayoutInflater.from(context).inflate(R.layout.applet_activity_custom_start_loading, null);
-//            }
-//
-//            @Override
-//            public void show(View v) {
-//
-//            }
-//
-//            @Override
-//            public void stop(View v) {
-//
-//            }
-//        };
-
-        return null;
-    }
-
-    /**
      * 用户账号,可选配置，设置后数据会按账号隔离存储小程序数据
      * 调用环境：主进程
      */
@@ -121,32 +64,6 @@ public class MiniAppProxyImpl extends BaseMiniAppProxyImpl {
 //        return objectObjectHashMap;
 
         return null;
-    }
-
-    /**
-     * 自定义授权弹窗view
-     * 调用环境：子进程
-     *
-     * @param context
-     * @param authInfo
-     * @param authView
-     * @return true:自定义授权view;false:使用内置
-     */
-    @Override
-    public boolean authView(Context context, MiniAuthInfo authInfo, IAuthView authView) {
-        boolean isCustom = false;
-        if (isCustom) {
-            View inflate = LayoutInflater.from(context).inflate(R.layout.mini_auth_view, null);
-            //必须设置
-            inflate.findViewById(R.id.mini_auth_btn_refuse).setOnClickListener(authInfo.refuseListener);
-            //必须设置
-            inflate.findViewById(R.id.mini_auth_btn_grant).setOnClickListener(authInfo.grantListener);
-
-            //返回自定义View
-            authView.getView(inflate);
-        }
-
-        return isCustom;
     }
 
     /**

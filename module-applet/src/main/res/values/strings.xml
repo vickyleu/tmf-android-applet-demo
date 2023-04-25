@@ -117,6 +117,7 @@
     <string name="applet_mini_proxy_city">北京市</string>
 
     <string name="applet_mini_auth">授权</string>
+    <string name="applet_mini_reject">拒绝</string>
 
 
 </resources>
