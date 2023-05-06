@@ -14,12 +14,10 @@ import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
 import com.tencent.tmfmini.sdk.annotation.ProxyService;
 import com.tencent.tmfmini.sdk.launcher.AppLoaderFactory;
-import com.tencent.tmfmini.sdk.launcher.core.IMiniAppContext;
 import com.tencent.tmfmini.sdk.launcher.core.proxy.BaseShareProxy;
 import com.tencent.tmfmini.sdk.launcher.core.proxy.ShareProxy;
 import com.tencent.tmfmini.sdk.launcher.model.ShareData;
 import com.tencent.tmfmini.sdk.launcher.ui.MoreItem;
-import com.tencent.tmfmini.sdk.ui.MorePanel;
 
 import java.util.ArrayList;
 
