@@ -49,19 +49,22 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
     // ok-http
     implementation "com.squareup.okhttp3:okhttp:3.12.13"
-    //x5开源版内核依赖
+
+    // x5内核 start
+    //开源版内核依赖
 //   implementation 'com.tencent.tbs:tbssdk:44286'
-//    implementation('com.tencent.tmf.android:mini_extra_public_x5:1.4.3-SNAPSHOT')
-    //x5静态版内核依赖
-//    implementation 'com.tencent.tmf.android:tbscore:20230227_102520_20230227_102520'
-//    implementation('com.tencent.tmf.android:mini_extra_static_x5:1.4.3-SNAPSHOT')
-    //x5动态版内核依赖
-    implementation('com.tencent.tmf.android:dynamicx5:1.2.4.12-SNAPSHOT')
-    implementation('com.tencent.tmf.android:mini_extra_dynamic_x5:1.4.3-SNAPSHOT')
+//    implementation 'com.tencent.tmf.android:mini_extra_public_x5:1.4.3-SNAPSHOT'
+    //静态版内核依赖
+    implementation 'com.tencent.tmf.android:tbscore:20230227_102520_20230227_102520'
+    implementation 'com.tencent.tmf.android:mini_extra_static_x5:1.4.3-SNAPSHOT'
+    //动态版内核依赖
+//    implementation 'com.tencent.tmf.android:dynamicx5:1.2.4.12-SNAPSHOT'
+//    implementation 'com.tencent.tmf.android:mini_extra_dynamic_x5:1.4.3-SNAPSHOT'
+    // x5内核 end
 
     // mini app start
     kapt 'com.tencent.tmf.android:mini_annotation_processor:1.4.1-SNAPSHOT'
-    implementation 'com.tencent.tmf.android:mini_core:1.4.80.3-20230424170429-SNAPSHOT'
+    implementation 'com.tencent.tmf.android:mini_core:1.4.83.1-SNAPSHOT'
     //扫码扩展组件
     implementation 'com.tencent.tmf.android:mini_extra_qrcode:1.4.3-SNAPSHOT'
     //google定位地图扩展组件
