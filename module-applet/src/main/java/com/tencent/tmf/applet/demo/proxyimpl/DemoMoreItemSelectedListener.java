@@ -1,7 +1,6 @@
 package com.tencent.tmf.applet.demo.proxyimpl;
 
 import static com.tencent.tmf.applet.demo.proxyimpl.ShareProxyImpl.OTHER_MORE_ITEM_1;
-import static com.tencent.tmf.applet.demo.proxyimpl.ShareProxyImpl.OTHER_MORE_ITEM_2;
 
 import android.app.Activity;
 import android.widget.Toast;
