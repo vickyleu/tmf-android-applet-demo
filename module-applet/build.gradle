@@ -56,7 +56,7 @@ dependencies {
 //    implementation 'com.tencent.tmf.android:mini_extra_public_x5:1.4.3-SNAPSHOT'
     //静态版内核依赖
     implementation 'com.tencent.tmf.android:tbscore:20230227_102520_20230227_102520'
-    implementation 'com.tencent.tmf.android:mini_extra_static_x5:1.4.3-SNAPSHOT'
+    implementation 'com.tencent.tmf.android:mini_extra_static_x5:1.4.4-SNAPSHOT'
     //动态版内核依赖
 //    implementation 'com.tencent.tmf.android:dynamicx5:1.2.4.12-SNAPSHOT'
 //    implementation 'com.tencent.tmf.android:mini_extra_dynamic_x5:1.4.3-SNAPSHOT'
@@ -64,7 +64,7 @@ dependencies {
 
     // mini app start
     kapt 'com.tencent.tmf.android:mini_annotation_processor:1.4.1-SNAPSHOT'
-    implementation 'com.tencent.tmf.android:mini_core:1.4.83.1-SNAPSHOT'
+    implementation 'com.tencent.tmf.android:mini_core:1.4.83.3-SNAPSHOT'
     //扫码扩展组件
     implementation 'com.tencent.tmf.android:mini_extra_qrcode:1.4.3-SNAPSHOT'
     //google定位地图扩展组件
