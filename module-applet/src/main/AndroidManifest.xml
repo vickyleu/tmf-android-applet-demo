@@ -117,6 +117,14 @@
             android:name="TencentMapSDK"
             android:value="QAZBZ-2HCKW-SWAR4-ORKF2-JDHL3-IAFBO"/>
 
+        <meta-data
+            android:name="HuaweiApiKey"
+            android:value="DAEDAONn3WBoSfI4/4dnNph0gb1JcNYbqV9bADPDST68cHxvfO4BVhbHAuouhsmZhm86sbxpJCr8a2e2rTKeDFzGXQecxG6n+FEAgw=="/>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDh4FPXndDpaznCRwD-9YsnAly5-VoSfaE" />
+
     </application>
 
 </manifest>
