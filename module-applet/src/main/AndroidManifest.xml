@@ -113,6 +113,10 @@
 
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
+        <meta-data
+            android:name="TencentMapSDK"
+            android:value="QAZBZ-2HCKW-SWAR4-ORKF2-JDHL3-IAFBO"/>
+
     </application>
 
 </manifest>

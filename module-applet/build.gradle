@@ -67,8 +67,8 @@ dependencies {
     implementation 'com.tencent.tmf.android:mini_core:1.4.83.3-SNAPSHOT'
     //扫码扩展组件
     implementation 'com.tencent.tmf.android:mini_extra_qrcode:1.4.3-SNAPSHOT'
-    //google定位地图扩展组件
-    implementation 'com.tencent.tmf.android:mini_extra_google_map:1.4.16-SNAPSHOT'
+    //腾讯地图扩展组件
+    implementation 'com.tencent.tmf.android:mini_extra_map:1.4.2-SNAPSHOT'
     //直播流组件
     implementation 'com.tencent.tmf.android:mini_extra_trtc_live:1.4.1-SNAPSHOT'
     //v8库，一般不需要添加，特殊场景才需要
