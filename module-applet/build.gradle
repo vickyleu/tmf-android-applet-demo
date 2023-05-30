@@ -53,13 +53,13 @@ dependencies {
     // x5内核 start
     //开源版内核依赖
 //   implementation 'com.tencent.tbs:tbssdk:44286'
-//    implementation 'com.tencent.tmf.android:mini_extra_public_x5:1.4.3-SNAPSHOT'
+//    implementation 'com.tencent.tmf.android:mini_extra_public_x5:1.4.3.0'
     //静态版内核依赖
     implementation 'com.tencent.tmf.android:tbscore:20230227_102520_20230227_102520'
-    implementation 'com.tencent.tmf.android:mini_extra_static_x5:1.4.4-SNAPSHOT'
+    implementation 'com.tencent.tmf.android:mini_extra_static_x5:1.4.4.0'
     //动态版内核依赖
 //    implementation 'com.tencent.tmf.android:dynamicx5:1.2.4.12-SNAPSHOT'
-//    implementation 'com.tencent.tmf.android:mini_extra_dynamic_x5:1.4.3-SNAPSHOT'
+//    implementation 'com.tencent.tmf.android:mini_extra_dynamic_x5:1.4.3.0'
     // x5内核 end
 
     // mini app start
@@ -69,7 +69,7 @@ dependencies {
     implementation 'com.tencent.tmf.android:mini_extra_qrcode:1.4.3.0'
 
     //腾讯地图start
-    implementation 'com.tencent.tmf.android:mini_extra_map:1.4.2-SNAPSHOT'
+    implementation 'com.tencent.tmf.android:mini_extra_map:1.4.2.0'
     implementation 'com.tencent.map:tencent-map-vector-sdk:4.5.10'
     // 地图组件库，包括小车平移、点聚合等组件功能，详见开发指南。
     implementation 'com.tencent.map:sdk-utilities:1.0.7'
@@ -80,6 +80,6 @@ dependencies {
     //直播流组件
     implementation 'com.tencent.tmf.android:mini_extra_trtc_live:1.4.2-SNAPSHOT'
     //v8库，一般不需要添加，特殊场景才需要
-    //implementation 'com.tencent.tmf.android:mini_extra_v8:1.4.0-SNAPSHOT'
+//    implementation 'com.tencent.tmf.android:mini_extra_v8:1.4.0.0'
     // mini app end
 }
