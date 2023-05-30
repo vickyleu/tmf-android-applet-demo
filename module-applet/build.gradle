@@ -63,10 +63,10 @@ dependencies {
     // x5内核 end
 
     // mini app start
-    kapt 'com.tencent.tmf.android:mini_annotation_processor:1.4.1-SNAPSHOT'
-    implementation 'com.tencent.tmf.android:mini_core:1.4.83.3-SNAPSHOT'
+    kapt 'com.tencent.tmf.android:mini_annotation_processor:1.4.1.0'
+    implementation 'com.tencent.tmf.android:mini_core:1.4.83.5'
     //扫码扩展组件
-    implementation 'com.tencent.tmf.android:mini_extra_qrcode:1.4.3-SNAPSHOT'
+    implementation 'com.tencent.tmf.android:mini_extra_qrcode:1.4.3.0'
 
     //腾讯地图start
     implementation 'com.tencent.tmf.android:mini_extra_map:1.4.2-SNAPSHOT'
@@ -78,7 +78,7 @@ dependencies {
     //腾讯地图end
 
     //直播流组件
-    implementation 'com.tencent.tmf.android:mini_extra_trtc_live:1.4.1-SNAPSHOT'
+    implementation 'com.tencent.tmf.android:mini_extra_trtc_live:1.4.2-SNAPSHOT'
     //v8库，一般不需要添加，特殊场景才需要
     //implementation 'com.tencent.tmf.android:mini_extra_v8:1.4.0-SNAPSHOT'
     // mini app end
