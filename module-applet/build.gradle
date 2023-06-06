@@ -55,7 +55,7 @@ dependencies {
 //   implementation 'com.tencent.tbs:tbssdk:44286'
 //    implementation 'com.tencent.tmf.android:mini_extra_public_x5:1.4.3.0'
     //静态版内核依赖
-    implementation 'com.tencent.tmf.android:tbscore:20230227_102520_20230227_102520'
+    implementation 'com.tencent.tmf.android:tbscore:20230412_185455_20230412_185455'
     implementation 'com.tencent.tmf.android:mini_extra_static_x5:1.4.4.0'
     //动态版内核依赖
 //    implementation 'com.tencent.tmf.android:dynamicx5:1.2.4.12-SNAPSHOT'
