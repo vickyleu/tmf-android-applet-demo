@@ -1,3 +1,0 @@
-include ':DEMO'
-include ':module-applet'
-include ':commonlib'

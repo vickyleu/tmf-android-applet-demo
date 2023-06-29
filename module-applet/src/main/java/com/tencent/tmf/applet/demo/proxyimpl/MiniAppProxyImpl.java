@@ -352,13 +352,14 @@ public class MiniAppProxyImpl extends BaseMiniAppProxyImpl {
                         R.mipmap.mini_demo_restart_miniapp)
                 .addAbout(getString(miniAppContext, R.string.applet_mini_proxy_impl_about),
                         R.mipmap.mini_demo_about)
-                .addDebug(getString(miniAppContext, R.string.mini_sdk_more_item_debug),
+                .addDebug(getString(miniAppContext, com.tencent.qqmini.R.string.mini_sdk_more_item_debug),
                         R.mipmap.mini_demo_about)
                 .addMonitor(getString(miniAppContext, R.string.applet_mini_proxy_impl_performance),
                         R.mipmap.mini_demo_about)
                 .addComplaint(getString(miniAppContext, R.string.applet_mini_proxy_impl_complain_and_report),
                         R.mipmap.mini_demo_browser_report)
-                .addSetting(getString(miniAppContext, R.string.mini_sdk_more_item_setting),
+                .addSetting(getString(miniAppContext,
+                                com.tencent.qqmini.R.string.mini_sdk_more_item_setting),
                         R.mipmap.mini_demo_setting);
 
         return builder.build();

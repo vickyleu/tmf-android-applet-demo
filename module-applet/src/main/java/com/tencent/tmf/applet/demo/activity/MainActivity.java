@@ -212,20 +212,16 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
         final AlertDialog alertDialog = new AlertDialog.Builder(this)
                 .setTitle(R.string.applet_main_act_delete)//标题
                 .setMessage(getString(R.string.applet_main_act_delete_msg, item.appId, item.version))//内容
-                .setPositiveButton(R.string.applet_main_act_delete_msg_confirm, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        TmfMiniSDK.deleteMiniApp(item.appId, item.appVerType, item.version);
-                        mAppAdapter.removeItem(pos);
-                        updateUi();
-                    }
-                })
-                .setNegativeButton(R.string.applet_main_act_delete_msg_cancal, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                })
+                .setPositiveButton(
+                        com.tencent.tmf.common.R.string.applet_main_act_delete_msg_confirm
+                        , (dialogInterface, i) -> {
+                            TmfMiniSDK.deleteMiniApp(item.appId, item.appVerType, item.version);
+                            mAppAdapter.removeItem(pos);
+                            updateUi();
+                        })
+                .setNegativeButton(
+                        com.tencent.tmf.common.R.string.applet_main_act_delete_msg_cancal
+                        , (dialogInterface, i) -> dialogInterface.dismiss())
                 .setCancelable(false)
                 .create();
         alertDialog.show();
